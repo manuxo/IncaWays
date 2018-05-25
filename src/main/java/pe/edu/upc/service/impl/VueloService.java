@@ -1,5 +1,6 @@
 package pe.edu.upc.service.impl;
 
+import java.sql.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,6 +43,12 @@ public class VueloService implements IVueloService {
 	public List<Vuelo> findAll() {
 		// TODO Auto-generated method stub
 		return vs.findAll();
+	}
+
+	@Override
+	public List<Vuelo> findByOrigenAndDestinoAndFechasalida(String origen, String destino, Date fechasalida) {
+		// TODO Auto-generated method stub
+		return vs.findByOrigenAndDestinoAndFechasalida(origen, destino, fechasalida);
 	}
 
 }

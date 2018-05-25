@@ -13,7 +13,7 @@ import pe.edu.upc.entity.Vuelo;
 public interface IVueloDAO extends JpaRepository<Vuelo,Long> {
 	
 	@Query("select v from Vuelo v where v.origen = :origen and v.destino = :destino and v.fechasalida=:fechasalida")
-	Vuelo findByOrigenAndDestinoAndFechasalida(@Param("origen") String lastname,
-	                             @Param("destino") String firstname,
+	List<Vuelo> findByOrigenAndDestinoAndFechasalida(@Param("origen") String origen,
+	                             @Param("destino") String destino,
 	                             @Param("fechasalida") Date fechasalida);
 }

@@ -10,18 +10,18 @@
 		<div class="col-sm-4">
 			<div class="contenedor">
 				<h2>Preferencias</h2>
-				<form action="#">
+				<form th:action="@{/vuelo/listar}" th:object="${vuelo}" method="post">
 				  <div class="form-group">
 				    <label for="origen">Origen:</label>
-				    <input type="text" class="form-control" id="origen">
+				    <input type="text" class="form-control" id="origen" th:field="*{origen}" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="destino">Destino:</label>
-				    <input type="text" class="form-control" id="destino">
+				    <input type="text" class="form-control" id="destino" th:field="*{destino}" required>
 				  </div>
 				  <div class="form-group">
 				    <label for="destino">Fecha de salida:</label>
-				    <input type="date" class="form-control" id="fechaSalida">
+				    <input type="date" class="form-control" id="fechaSalida" th:field="*{fechasalida}" required>
 				  </div>
 				  <button type="submit" class="btn btn-default">Buscar</button>
 				</form>
