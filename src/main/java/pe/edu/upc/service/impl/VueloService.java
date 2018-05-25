@@ -1,0 +1,47 @@
+package pe.edu.upc.service.impl;
+
+import java.util.List;
+
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
+import pe.edu.upc.dao.IVueloDAO;
+import pe.edu.upc.entity.Vuelo;
+import pe.edu.upc.service.IVueloService;
+@Service
+public class VueloService implements IVueloService {
+
+	@Autowired
+	private IVueloDAO vs;
+	
+	@Override
+	@Transactional
+	public void saveVuelo(Vuelo vuelo) {
+		// TODO Auto-generated method stub
+		vs.save(vuelo);
+	}
+
+	@Override
+	@Transactional
+	public void deleteVuelo(Long id) {
+		// TODO Auto-generated method stub
+		vs.deleteById(id);
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public Vuelo findById(Long id) {
+		
+		return vs.findById(id).orElse(null);
+		
+	}
+
+	@Override
+	@Transactional(readOnly = true)
+	public List<Vuelo> findAll() {
+		// TODO Auto-generated method stub
+		return vs.findAll();
+	}
+
+}

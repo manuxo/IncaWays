@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row container">
+		
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+			  <div class="panel-header">Detalles del vuelo</div>
+			  <div class="panel-body">
+			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
+			  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
+			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto}"></p>
+			  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino}"></p>
+			  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc}"></p>
+			  </div>
+			</div>
+			
+			<br>
+			
+			<div class="btn-group">
+			  <a th:href="@{/vuelo/listar}">
+			  <button type="button" class="btn btn-link">
+			  	Volver
+			  </button>
+			  </a>
+			  <a th:href="@{/vuelo/comprar}">
+			  <button type="button" class="btn btn-primary">
+			  	Comprar
+			  </button>
+			  </a>
+			</div>
+			
+			
+		</div>
+		<!-- Panel -->
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
