@@ -62,16 +62,4 @@ public class VueloController {
 		return "vuelo/ver";
 	}
 	
-	@PostMapping(value = "/vuelo/listar")
-	public String buscar(@Valid Vuelo vuelo, Model model) {
-		
-		/*
-		List<Vuelo> vuelos = servicio.findByOrigenAndDestinoAndFechasalida(vuelo.getOrigen(), 
-				vuelo.getDestino(), vuelo.getFechasalida());
-		
-		model.addAttribute("vuelos", vuelos);
-		*/
-		
-		return "redirect:vuelo/listar";
-	}
 }
