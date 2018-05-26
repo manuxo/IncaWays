@@ -1,9 +1,14 @@
 package pe.edu.upc.controller;
 
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 
+import pe.edu.upc.entity.Estadia;
 import pe.edu.upc.service.IEstadiaService;
 
 @Controller
@@ -12,4 +17,21 @@ public class EstadiaController {
 	@Autowired
 	private IEstadiaService servicio;
 	//aqui van las funciones que dependen de las vistas.
+	
+	@GetMapping(value = "/estadia/listar")
+	public String listar(Model model) {
+
+		model.addAttribute("titulo", "Listado de estadias");
+		
+		List<Estadia> estadias = servicio.findAll();
+		
+		// model.addAttribute("clientes", clienteService.findAll());
+		// TODO
+		model.addAttribute("estadias", estadias);
+		
+		//Objeto utilizado para la busqueda de vuelos dentro de la vista
+		model.addAttribute("estadia",new Estadia());
+		
+		return "estadia/listar";
+	}
 }

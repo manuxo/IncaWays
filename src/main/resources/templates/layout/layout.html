@@ -2,7 +2,7 @@
 <html xmlns:th="http://www.thymeleaf.org">
 <head th:fragment="head">
 <meta charset="UTF-8"></meta>
-<title th:text="'Spring Boot: MVC + Thymeleaf + Data JPA - ' + ${titulo}"></title>
+<title th:text="${titulo}"></title>
 <link rel="stylesheet"
 	th:href="@{/css/bootstrap.min.css}" />
 <link rel="stylesheet"
@@ -24,6 +24,8 @@
 					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/vuelo/listar}">Vuelos</a></li>
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/estadia/listar}">Estadias</a></li>
 				</ul>
 			</div>
 		</nav>
