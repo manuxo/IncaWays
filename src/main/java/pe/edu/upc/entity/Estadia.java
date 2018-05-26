@@ -39,7 +39,7 @@ public class Estadia implements Serializable{
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Empresaestadia empresaestadia;
 
-	@OneToMany(mappedBy="estadia",fetch=FetchType.EAGER,cascade=CascadeType.PERSIST)
+	@OneToMany(mappedBy="estadia",fetch=FetchType.LAZY,cascade=CascadeType.PERSIST)
 	@Fetch(value = FetchMode.SUBSELECT)
 	List<Compraestadia> comprasestadia;
 	

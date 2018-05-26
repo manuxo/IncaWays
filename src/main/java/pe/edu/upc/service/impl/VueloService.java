@@ -51,4 +51,10 @@ public class VueloService implements IVueloService {
 		return vs.findByOrigenAndDestinoAndFechasalida(origen, destino, fechasalida);
 	}
 
+	@Override
+	public Vuelo findByIdVuelo(Long id) {
+		// TODO Auto-generated method stub
+		return vs.findByIdVuelo(id);
+	}
+
 }

@@ -39,4 +39,11 @@ public class UsuarioService implements IUsuarioService {
 		return us.findAll();
 	}
 
+	@Override
+	@Transactional(readOnly=true)
+	public Usuario findByIdUsuario(Long id) {
+		// TODO Auto-generated method stub
+		return us.findByIdUsuario(id);
+	}
+
 }

@@ -15,25 +15,42 @@
 			  	<p th:text="'Direccion: ' + ${estadia.direccion}"></p>
 			  	<p th:text="'Costo por dia: $' + ${estadia.costoxdia}"></p>
 			  	<p th:text="'Tipo de estadia: ' + ${estadia.tipoestadia}"></p>
+			  	<p th:text="'Id: ' + ${estadia.id}"></p>
 			  </div>
 			</div>
 			
 			<br>
 			
-			<div class="btn-group">
-			  <a th:href="@{/estadia/listar}">
-			  <button type="button" class="btn btn-link">
-			  	Volver
-			  </button>
-			  </a>
-			  <a th:href="@{/estadia/comprar}">
-			  <button type="button" class="btn btn-primary">
-			  	Comprar
-			  </button>
-			  </a>
-			</div>
+			
+			<form th:action="@{/estadia/ver}" th:object="${compraestadia}" method="post">
+				  <div class="form-group">
+				    <label for="usuario">Seleccione usuario: </label>
+				    <select class="form-control" id="usuario" th:field="*{usuario.id}">
+					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
+					  </option>
+					</select>
+				  </div>
+				  <div class="form-group">
+				    <label for="nrodias">Seleccione el numero de dias: </label>
+				    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias">
+				  </div>
+				  
+				  
+				  <input type="hidden" th:value="${estadia.id}" th:field="*{estadia.id}">
+				  
+				  <div class="btn-group">
+					<button type="button" class="btn btn-link">
+						Volver
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Comprar
+					</button>
+		    	  </div>
+			</form>
+			
+			
 		</div>
-		<!-- Panel -->
+			
 	</div>
 	<!-- Contenido Principal -->
 	<footer th:replace="layout/layout :: footer"></footer>

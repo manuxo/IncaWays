@@ -17,4 +17,6 @@ public interface IVueloService {
 	List<Vuelo> findByOrigenAndDestinoAndFechasalida(String origen,String destino,Date fechasalida);
 	//public Vuelo findByEmpresa(Empresavuelo ev); O
 	//public Vuelo findByEmpresaID(int id);
+	
+	Vuelo findByIdVuelo(Long id);
 }

@@ -33,7 +33,7 @@ public class Empresaestadia implements Serializable {
 	@NotNull
 	int ruc;
 	
-	@OneToMany(mappedBy="empresaestadia",fetch=FetchType.EAGER,cascade=CascadeType.ALL)
+	@OneToMany(mappedBy="empresaestadia",fetch=FetchType.LAZY,cascade=CascadeType.ALL)
 	@Fetch(value = FetchMode.SUBSELECT)
 	List<Estadia> estadias;
 	

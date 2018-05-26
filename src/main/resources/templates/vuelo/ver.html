@@ -21,32 +21,42 @@
 			
 			<br>
 			
-			<form th:action="@{/vuelo/comprar}" th:object="${compraestadia}">
+			<form th:action="@{/vuelo/comprar}" th:object="${compravuelo}" method="post">
 			
 				  <div class="form-group">
 				    <label for="usuario">Seleccione usuario: </label>
-				    <select id="usuario" th:field="*{usuario.id}">
+				    <select class="form-control" id="usuario" th:field="*{usuario.id}">
 					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
 					  </option>
 					</select>
 				  </div>
 				  
-				  <div class="btn-group">
-					  <a th:href="@{/vuelo/listar}">
-						  <button type="button" class="btn btn-link">
-						  	Volver
-						  </button>
-					  </a>
-					  <a th:href="@{/vuelo/comprar}">
-						  <button type="button" class="btn btn-primary">
-						  	Comprar
-						  </button>
-					  </a>
+				  
+				  
+				  <div class="form-group">
+				  	<label for="nroadulto">Cantidad de adultos:</label>
+				  	<input type="number" class="form-control" id="nroadulto"
+				  	th:field="*{nroadulto}">
+				  	<label for="nronino">Cantidad de niños:</label>
+				  	<input type="number" class="form-control" id="nronino"
+				  	th:field="*{nronino}">
+				  	<label for="nrofc">Cantidad de primera clase:</label>
+				  	<input type="number" class="form-control" id="nrofc"
+				  	th:field="*{nrofc}">
 				  </div>
+				  
+				  <input type="hidden" th:value="${vuelo.id}" th:field="*{vuelo.id}">
+				  
+				  <div class="btn-group">
+					  
+					<button type="button" class="btn btn-link">
+						Volver
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Comprar
+					</button>
+		    	  </div>
 			</form>
-			
-			
-			
 			
 			
 		</div>

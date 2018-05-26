@@ -16,6 +16,12 @@ public class CompravueloService implements ICompravueloService {
 	@Transactional
 	public void saveCompraVuelo(Compravuelo cv) {
 		// TODO Auto-generated method stub
+		double costoAdulto = cv.getVuelo().getTarifaadulto() * cv.getVuelo().getTarifabase();
+		double costoNino = cv.getVuelo().getTarifanino()* cv.getVuelo().getTarifabase();
+		double costoFC = cv.getVuelo().getTarifafc()* cv.getVuelo().getTarifabase();
+		double montototal = costoAdulto * cv.getNroadulto() + costoNino * cv.getNronino() + costoFC * cv.getNrofc();
+		cv.setMontototal(montototal);
+		cv.setFechaviaje(cv.getVuelo().getFechasalida());
 		cvs.save(cv);
 	}
 

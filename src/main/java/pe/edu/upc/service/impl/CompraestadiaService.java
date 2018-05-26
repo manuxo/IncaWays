@@ -17,6 +17,9 @@ public class CompraestadiaService implements ICompraestadiaService {
 	@Transactional
 	public void saveCompraestadia(Compraestadia ce) {
 		// TODO Auto-generated method stub
+		double costoxdia = ce.getEstadia().getCostoxdia();
+		double costodecompra = costoxdia * ce.getNrodias();
+		ce.setCosto(costodecompra);
 		ces.save(ce);
 	}
 

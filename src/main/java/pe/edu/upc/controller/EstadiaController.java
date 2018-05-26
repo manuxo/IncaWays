@@ -10,16 +10,25 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Estadia;
+import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.IEstadiaService;
+import pe.edu.upc.service.IUsuarioService;
 
 @Controller
 public class EstadiaController {
 	
 	@Autowired
 	private IEstadiaService servicio;
+	
+	@Autowired
+	private IUsuarioService servicioUsuario;
+	
 	//aqui van las funciones que dependen de las vistas.
+	
+	
 	
 	@GetMapping(value = "/estadia/listar")
 	public String listar(Model model) {
@@ -47,7 +56,18 @@ public class EstadiaController {
 			flash.addFlashAttribute("error", "La estadia no existe en la base de datos");
 			return "redirect:estadia/listar";
 		}
-
+		
+		//Llenar combobox con los usuarios
+		List<Usuario> usuarios = servicioUsuario.findAll();
+		model.addAttribute("usuarios",usuarios);
+		
+		Compraestadia compraestadia = new Compraestadia();
+		compraestadia.setEstadia(new Estadia());
+		compraestadia.setUsuario(new Usuario());
+		
+		
+		model.addAttribute("compraestadia",compraestadia);
+		
 		model.addAttribute("estadia", estadia);
 		return "estadia/ver";
 	}
