@@ -39,6 +39,7 @@
 				        <th>Destino</th>
 				        <th>Fecha de Salida</th>
 				        <th>Hora de Salida</th>
+				        <th>Tarifa Base</th>
 				        <th></th>
 				      </tr>
 				    </thead>
@@ -48,6 +49,7 @@
 				        <td th:text="${vuelo.destino}"></td>
 				        <td th:text="${vuelo.fechasalida}"></td>
 				        <td th:text="${vuelo.horasalida}"></td>
+				        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
 				        <td>
 	  						<div class="btn-group">
 							  <a th:href="@{/vuelo/ver/} + ${vuelo.id}">

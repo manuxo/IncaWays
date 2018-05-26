@@ -47,7 +47,7 @@
 				        <td th:text="${estadia.pais}"></td>
 				        <td th:text="${estadia.ciudad}"></td>
 				        <td th:text="${estadia.tipoestadia}"></td>
-				        <td th:text="${estadia.costoxdia}"></td>
+				        <td th:text="'$' + ${estadia.costoxdia}"></td>
 				        <td>
 	  						<div class="btn-group">
 							  <a th:href ="@{/estadia/ver/} + ${estadia.id}">
