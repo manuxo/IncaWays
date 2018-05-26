@@ -21,18 +21,32 @@
 			
 			<br>
 			
-			<div class="btn-group">
-			  <a th:href="@{/vuelo/listar}">
-			  <button type="button" class="btn btn-link">
-			  	Volver
-			  </button>
-			  </a>
-			  <a th:href="@{/vuelo/comprar}">
-			  <button type="button" class="btn btn-primary">
-			  	Comprar
-			  </button>
-			  </a>
-			</div>
+			<form th:action="@{/vuelo/comprar}" th:object="${compraestadia}">
+			
+				  <div class="form-group">
+				    <label for="usuario">Seleccione usuario: </label>
+				    <select id="usuario" th:field="*{usuario.id}">
+					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
+					  </option>
+					</select>
+				  </div>
+				  
+				  <div class="btn-group">
+					  <a th:href="@{/vuelo/listar}">
+						  <button type="button" class="btn btn-link">
+						  	Volver
+						  </button>
+					  </a>
+					  <a th:href="@{/vuelo/comprar}">
+						  <button type="button" class="btn btn-primary">
+						  	Comprar
+						  </button>
+					  </a>
+				  </div>
+			</form>
+			
+			
+			
 			
 			
 		</div>

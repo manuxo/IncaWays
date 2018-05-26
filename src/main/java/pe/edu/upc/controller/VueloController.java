@@ -22,7 +22,10 @@ import org.springframework.web.bind.annotation.SessionAttributes;
 import org.springframework.web.bind.support.SessionStatus;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Compraestadia;
+import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
+import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
 
 
@@ -31,6 +34,9 @@ public class VueloController {
 	
 	@Autowired
 	private IVueloService servicio;
+	
+	@Autowired
+	private IUsuarioService servicioUsuario;
 	
 	@GetMapping(value = "/vuelo/listar")
 	public String listar(Model model) {
@@ -57,7 +63,13 @@ public class VueloController {
 			flash.addFlashAttribute("error", "El vuelo no existe en la base de datos");
 			return "redirect:vuelo/listar";
 		}
-
+		
+		List<Usuario> usuarios = servicioUsuario.findAll();
+		
+		Compraestadia compraestadia = new Compraestadia();
+		
+		model.addAttribute("usuarios",usuarios);
+		model.addAttribute("compraestadia",compraestadia);
 		model.addAttribute("vuelo", vuelo);
 		return "vuelo/ver";
 	}

@@ -1,5 +1,7 @@
 package pe.edu.upc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -27,6 +29,14 @@ public class UsuarioService implements IUsuarioService {
 	public void deleteUsuario(Long id) {
 		// TODO Auto-generated method stub
 		us.deleteById(id);
+		
+	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Usuario> findAll() {
+		// TODO Auto-generated method stub
+		return us.findAll();
 	}
 
 }
