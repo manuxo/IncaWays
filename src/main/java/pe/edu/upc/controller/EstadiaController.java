@@ -51,8 +51,8 @@ public class EstadiaController {
 	@GetMapping(value = "/estadia/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
-		Estadia estadia = servicio.findById(id);
-		if (estadia == null) {
+		Estadia estadiaV = servicio.findById(id);
+		if (estadiaV == null) {
 			flash.addFlashAttribute("error", "La estadia no existe en la base de datos");
 			return "redirect:estadia/listar";
 		}
@@ -62,13 +62,10 @@ public class EstadiaController {
 		model.addAttribute("usuarios",usuarios);
 		
 		Compraestadia compraestadia = new Compraestadia();
-		compraestadia.setEstadia(new Estadia());
-		compraestadia.setUsuario(new Usuario());
 		
 		
 		model.addAttribute("compraestadia",compraestadia);
-		
-		model.addAttribute("estadia", estadia);
+		model.addAttribute("estadiaV", estadiaV);
 		return "estadia/ver";
 	}
 }

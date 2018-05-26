@@ -9,23 +9,22 @@
 			<div class="panel panel-default">
 			  <div class="panel-header">Detalles de la estadia</div>
 			  <div class="panel-body">
-			  	<p th:text="'Empresa: ' + ${estadia.empresaestadia.nombre}"></p>
-			  	<p th:text="'Pais: ' + ${estadia.pais}"></p>
-			  	<p th:text="'Ciudad: ' + ${estadia.ciudad}"></p>
-			  	<p th:text="'Direccion: ' + ${estadia.direccion}"></p>
-			  	<p th:text="'Costo por dia: $' + ${estadia.costoxdia}"></p>
-			  	<p th:text="'Tipo de estadia: ' + ${estadia.tipoestadia}"></p>
-			  	<p th:text="'Id: ' + ${estadia.id}"></p>
+			  	<p th:text="'Empresa: ' + ${estadiaV.empresaestadia.nombre}"></p>
+			  	<p th:text="'Pais: ' + ${estadiaV.pais}"></p>
+			  	<p th:text="'Ciudad: ' + ${estadiaV.ciudad}"></p>
+			  	<p th:text="'Direccion: ' + ${estadiaV.direccion}"></p>
+			  	<p th:text="'Costo por dia: $' + ${estadiaV.costoxdia}"></p>
+			  	<p th:text="'Tipo de estadia: ' + ${estadiaV.tipoestadia}"></p>
+			  	<p th:text="'Id: ' + ${estadiaV.id}"></p>
 			  </div>
 			</div>
 			
 			<br>
 			
-			
-			<form th:action="@{/estadia/ver}" th:object="${compraestadia}" method="post">
+			<form th:action="@{/estadia/ver/} + ${estadiaV.id}" th:object="${compraestadia}" method="post">
 				  <div class="form-group">
 				    <label for="usuario">Seleccione usuario: </label>
-				    <select class="form-control" id="usuario" th:field="*{usuario.id}">
+				    <select class="form-control" id="usuario" th:field="*{usuario}">
 					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
 					  </option>
 					</select>
@@ -33,10 +32,15 @@
 				  <div class="form-group">
 				    <label for="nrodias">Seleccione el numero de dias: </label>
 				    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias">
+				    
+				    
+				    <!-- Inputs para calcular el total -->
+				    <input type="hidden" th:value="${estadiaV.costoxdia}" id="costoxdia">
+				    <label for="total">Total: </label>
+				    <input type="text" id="total" disabled>
 				  </div>
+				 
 				  
-				  
-				  <input type="hidden" th:value="${estadia.id}" th:field="*{estadia.id}">
 				  
 				  <div class="btn-group">
 					<button type="button" class="btn btn-link">
@@ -54,5 +58,6 @@
 	</div>
 	<!-- Contenido Principal -->
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/compraestadia/CalcularTotal.js}"></script>
 </body>
 </html>

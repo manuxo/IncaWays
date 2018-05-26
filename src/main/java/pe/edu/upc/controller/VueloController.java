@@ -60,8 +60,6 @@ public class VueloController {
 		
 		
 		Compravuelo compravuelo = new Compravuelo();
-		compravuelo.setUsuario(new Usuario());
-		compravuelo.setVuelo(new Vuelo());
 		
 		model.addAttribute("compravuelo",compravuelo);
 		

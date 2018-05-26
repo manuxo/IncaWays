@@ -1,8 +1,11 @@
 package pe.edu.upc.controller;
 
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -38,17 +41,13 @@ public class ComprasController {
 	//aqui van las funciones que dependen de las vistas.
 	
 	
-	@RequestMapping(value = "/vuelo/comprar", method= RequestMethod.POST)
+	@RequestMapping(value = "/vuelo/ver/{id}", method= RequestMethod.POST)
 	// public String guardar(Compravuelo compravuelo) {
-	public String guardar(Model model, Compravuelo compravuelo) {		
-		Long idUsuario = compravuelo.getUsuario().getId();
-		Usuario usuario = serviciou.findByIdUsuario(idUsuario);
-		compravuelo.setUsuario(usuario);
+	public String guardar(Model model, Compravuelo compravuelo, @PathVariable(value = "id") Long id) {		
 		
-		
-		Long idVuelo = compravuelo.getVuelo().getId();
-		Vuelo vuelo = servicioVuelo.findByIdVuelo(idVuelo);
+		Vuelo vuelo = servicioVuelo.findById(id);
 		compravuelo.setVuelo(vuelo);
+		
 		System.out.print("\n\n\n\n\n\n");
 		System.out.println("Usuario: " + compravuelo.getUsuario().getNombre());
 		System.out.println("Vuelo: " + compravuelo.getVuelo().getOrigen());
@@ -58,32 +57,21 @@ public class ComprasController {
 		return "redirect:/vuelo/listar";
 	}
 	
-	@RequestMapping(value = "/estadia/ver", method= RequestMethod.POST)
+	@RequestMapping(value = "/estadia/ver/{id}", method= RequestMethod.POST)
 	// public String guardar(Compravuelo compravuelo) {
-	public String guardar(Model model, Compraestadia compraestadia) {
-		try {
-			Long idUsuario = compraestadia.getUsuario().getId();
-			Usuario usuario = serviciou.findByIdUsuario(idUsuario);
-			compraestadia.setUsuario(usuario);
-			
-			
-			Long idEstadia = compraestadia.getEstadia().getId();
-			Estadia estadia = servicioEstadia.findById(idEstadia);
-			compraestadia.setEstadia(estadia);
-			
-			
-			System.out.print("\n\n\n\n\n\n");
-			System.out.println("Usuario: " + compraestadia.getUsuario().getNombre());
-			System.out.println("Estadia: " + compraestadia.getEstadia().getCiudad());
-			
-			
-			servicioce.saveCompraestadia(compraestadia);
-		}catch(IllegalArgumentException e) {
-			System.out.print("\n\n\n\n\n\n");
-			System.out.println("xxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxxx");
-			System.out.print("\n\n\n\n\n\n");
-		}
+	public String guardar(Model model, Compraestadia compraestadia, @PathVariable(value = "id") Long id) {
+		System.out.print("\n\n\n\n\n\n");
+		System.out.print("holaaaa");
+		System.out.print("\n\n\n\n\n\n");
 		
+		Estadia estadia = servicioEstadia.findById(id);
+		compraestadia.setEstadia(estadia);
+		System.out.print("\n\n\n\n\n\n");
+		System.out.println("Usuario: " + compraestadia.getUsuario().getNombre());
+		System.out.println("Estadia: " + compraestadia.getEstadia().getCiudad());
+		
+		
+		servicioce.saveCompraestadia(compraestadia);
 		
 		
 		

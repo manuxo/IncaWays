@@ -21,11 +21,11 @@
 			
 			<br>
 			
-			<form th:action="@{/vuelo/comprar}" th:object="${compravuelo}" method="post">
+			<form th:action="@{/vuelo/ver/} + ${vuelo.id}" th:object="${compravuelo}" method="post">
 			
 				  <div class="form-group">
 				    <label for="usuario">Seleccione usuario: </label>
-				    <select class="form-control" id="usuario" th:field="*{usuario.id}">
+				    <select class="form-control" id="usuario" th:field="*{usuario}">
 					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
 					  </option>
 					</select>
@@ -43,9 +43,18 @@
 				  	<label for="nrofc">Cantidad de primera clase:</label>
 				  	<input type="number" class="form-control" id="nrofc"
 				  	th:field="*{nrofc}">
+				  	
+				  	
+				  	<!--Inputs para calcular el total en tiempo de ejecucion-->
+				  	<input type="hidden" th:value="${vuelo.tarifabase}" id="tarifabase">
+				  	<input type="hidden" th:value="${vuelo.tarifanino}" id="tarifanino">
+				  	<input type="hidden" th:value="${vuelo.tarifaadulto}" id="tarifaadulto">
+				  	<input type="hidden" th:value="${vuelo.tarifafc}" id="tarifafc">
+				  	<label for="total">Total: </label>
+				  	<input type="text" id="total" disabled>
+				  	
+				  	
 				  </div>
-				  
-				  <input type="hidden" th:value="${vuelo.id}" th:field="*{vuelo.id}">
 				  
 				  <div class="btn-group">
 					  
@@ -64,5 +73,6 @@
 	</div>
 	<!-- Contenido Principal -->
 	<footer th:replace="layout/layout :: footer"></footer>
+	<script th:src="@{/js/compravuelo/CalcularTotal.js}"></script>
 </body>
 </html>
