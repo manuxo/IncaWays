@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+	<header th:replace="layout/layout :: header"></header>
+	<div class="row container">
+		
+		<div class="col-sm-12">
+			<div class="panel panel-default">
+			  <div class="panel-header">Detalles de la estadia</div>
+			  <div class="panel-body">
+			  	<p th:text="'Empresa: ' + ${estadia.empresaestadia.nombre}"></p>
+			  	<p th:text="'Pais: ' + ${estadia.pais}"></p>
+			  	<p th:text="'Ciudad: ' + ${estadia.ciudad}"></p>
+			  	<p th:text="'Direccion: ' + ${estadia.direccion}"></p>
+			  	<p th:text="'Costo por dia: $' + ${estadia.costoxdia}"></p>
+			  	<p th:text="'Tipo de estadia: ' + ${estadia.tipoestadia}"></p>
+			  </div>
+			</div>
+			
+			<br>
+			
+			<div class="btn-group">
+			  <a th:href="@{/estadia/listar}">
+			  <button type="button" class="btn btn-link">
+			  	Volver
+			  </button>
+			  </a>
+			  <a th:href="@{/estadia/comprar}">
+			  <button type="button" class="btn btn-primary">
+			  	Comprar
+			  </button>
+			  </a>
+			</div>
+			
+			
+		</div>
+		<!-- Panel -->
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

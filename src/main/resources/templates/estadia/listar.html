@@ -50,7 +50,7 @@
 				        <td th:text="${estadia.costoxdia}"></td>
 				        <td>
 	  						<div class="btn-group">
-							  <a href ="#">
+							  <a th:href ="@{/estadia/ver/} + ${estadia.id}">
 							  <button type="button" class="btn btn-primary">
 							  	Ver
 							  </button>
