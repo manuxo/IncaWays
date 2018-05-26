@@ -13,6 +13,7 @@ function calcularTotal(){
     	
     	inputTotal.attr("value","$" + total);
 }
+
 $(function() {
 	
     var inputDias = $('#nrodias');
