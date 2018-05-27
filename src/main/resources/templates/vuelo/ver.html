@@ -14,9 +14,9 @@
 			  <div class="card-body bg-default">
 			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
 			  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
-			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto}"></p>
-			  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino}"></p>
-			  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc}"></p>
+			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto * vuelo.tarifabase}"></p>
+			  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino * vuelo.tarifabase}"></p>
+			  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc * vuelo.tarifabase}"></p>
 			  </div>
 			</div>
 			

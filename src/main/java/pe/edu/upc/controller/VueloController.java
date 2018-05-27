@@ -91,33 +91,15 @@ public class VueloController {
 	
 	@RequestMapping(value = "/vuelo/crear", method= RequestMethod.POST)
 	// public String guardar(Compravuelo compravuelo) {
-	public String guardar(@Valid ContenedorFormulario contenedor, BindingResult bindingResult,Model model) {
-		contenedor.getVuelo().setFechasalida(formatStringToSqlDate(contenedor.getFechasalida()));
+	public String guardar(@Valid ContenedorFormulario contenedor, BindingResult bindingResult) {
+		contenedor.getVuelo().setFechasalida(contenedor.formatStringToSqlDate(contenedor.getFechasalida()));
 		contenedor.getVuelo().setHorasalida(Time.valueOf(contenedor.getHorasalida()));
 		servicio.saveVuelo(contenedor.getVuelo());
 		return "redirect:/vuelo/listar";
 	}
 	
-	private Date formatStringToSqlDate(String strDate) {
-		Date fecha = null;
-		String anios = strDate.substring(0,4);
-		
-		String meses = strDate.substring(5,7);
-		
-		String dias = strDate.substring(8);
-		
-		@SuppressWarnings("deprecation")
-		java.util.Date fechaFormateada = new java.util.Date(Integer.parseInt(anios), Integer.parseInt(meses), Integer.parseInt(dias));
-		
-		
-		@SuppressWarnings("deprecation")
-		java.util.Date base = new java.util.Date(1969,12,30);
-		
-		fecha = new Date(fechaFormateada.getTime() - base.getTime());
-		return fecha;
-	}
+	
 }
-
 
 class ContenedorFormulario{
 	private Vuelo vuelo;
@@ -145,5 +127,24 @@ class ContenedorFormulario{
 	}
 	public void setHorasalida(String horasalida) {
 		this.horasalida = horasalida;
+	}
+	
+	public Date formatStringToSqlDate(String strDate) {
+		Date fecha = null;
+		String anios = strDate.substring(0,4);
+		
+		String meses = strDate.substring(5,7);
+		
+		String dias = strDate.substring(8);
+		
+		@SuppressWarnings("deprecation")
+		java.util.Date fechaFormateada = new java.util.Date(Integer.parseInt(anios), Integer.parseInt(meses), Integer.parseInt(dias));
+		
+		
+		@SuppressWarnings("deprecation")
+		java.util.Date base = new java.util.Date(1969,12,30);
+		
+		fecha = new Date(fechaFormateada.getTime() - base.getTime());
+		return fecha;
 	}
 }

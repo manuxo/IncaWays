@@ -1,5 +1,7 @@
 package pe.edu.upc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -24,6 +26,12 @@ public class EmpresaestadiaService implements IEmpresaEstadiaService {
 	public void deleteEmpresaestadia(Long id) {
 		// TODO Auto-generated method stub
 		ees.deleteById(id);
+	}
+
+	@Override
+	public List<Empresaestadia> findAll() {
+		// TODO Auto-generated method stub
+		return ees.findAll();
 	}
 
 }

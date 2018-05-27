@@ -71,7 +71,7 @@ public class ComprasController {
 			e.printStackTrace();
 		}
 		
-		return "redirect:compras/listar";
+		return "redirect:/compras/listar";
 	}
 	
 	@RequestMapping(value = "/estadia/ver/{id}", method= RequestMethod.POST)
