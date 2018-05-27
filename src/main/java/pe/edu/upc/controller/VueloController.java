@@ -3,17 +3,25 @@ package pe.edu.upc.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
+import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
+import pe.edu.upc.entity.Empresavuelo;
+import pe.edu.upc.entity.Estadia;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
+import pe.edu.upc.service.IEmpresaVueloService;
 import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
 
@@ -26,6 +34,9 @@ public class VueloController {
 	
 	@Autowired
 	private IUsuarioService servicioUsuario;
+	
+	@Autowired
+	private IEmpresaVueloService servicioEmpresaVuelo;
 	
 	@GetMapping(value = "/vuelo/listar")
 	public String listar(Model model) {
@@ -64,6 +75,29 @@ public class VueloController {
 		model.addAttribute("compravuelo",compravuelo);
 		
 		return "vuelo/ver";
+	}
+	
+	@GetMapping(value = "/vuelo/crear")
+	public String crear(Model model) {
+		
+		List<Empresavuelo> empresavuelos = servicioEmpresaVuelo.findAll();
+		model.addAttribute("empresavuelos", empresavuelos);
+		
+		model.addAttribute("vuelo",new Vuelo());
+		model.addAttribute("titulo","Publicar Vuelo");
+		return "vuelo/crear";
+	}
+	
+	
+	@RequestMapping(value = "/vuelo/crear", method= RequestMethod.POST)
+	// public String guardar(Compravuelo compravuelo) {
+	public String guardar(@Valid Vuelo vuelo, BindingResult bindingResult,Model model) {
+		
+		System.out.print("\n\n\n ENTREEEE \n\n\n");
+		
+		servicio.saveVuelo(vuelo);
+		
+		return "redirect:/vuelo/listar";
 	}
 	
 }

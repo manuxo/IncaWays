@@ -21,6 +21,10 @@ public class VueloService implements IVueloService {
 	@Transactional
 	public void saveVuelo(Vuelo vuelo) {
 		// TODO Auto-generated method stub
+		
+		//REGLA DE NEGOCIO
+		//Al publicar un servicio se inicializa el campo boolean comprado = false
+		vuelo.setComprado(false);
 		vs.save(vuelo);
 	}
 

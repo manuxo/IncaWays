@@ -20,6 +20,10 @@ public class EstadiaService implements IEstadiaService {
 	@Transactional
 	public void saveEstadia(Estadia estadia) {
 		// TODO Auto-generated method stub
+		
+		//REGLA DE NEGOCIO
+		//Al publicar un servicio se inicializa el campo boolean comprado = false
+		estadia.setComprado(false);
 		es.save(estadia);
 	}
 

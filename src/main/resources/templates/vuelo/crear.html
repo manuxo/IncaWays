@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row container">
+		
+		<div class="col-sm-12">
+			<h2>Publicar Vuelo</h2>
+			<form th:action="@{/vuelo/crear}" th:object="${vuelo}" method="post">
+			
+				  <div class="form-group">
+				    <label for="empresavuelo">Seleccione empresa: </label>
+				    <select class="form-control" id="empresavuelo" th:field="*{empresavuelo}">
+					  <option th:each="empresavuelo:${empresavuelos}" th:value="${empresavuelo.id}" th:text="${empresavuelo.nombre}">
+					  </option>
+					</select>
+				  </div>
+				  
+				  <div class="form-group">
+				  
+				  	<label for="origen">Origen: </label>
+				  	<input id="origen" type="text" th:field="*{origen}">
+				  	<label for="destino">Destino: </label>
+				  	<input id="destino" type="text" th:field="*{destino}">
+				  	<label for="avion">Avion: </label>
+					<input id="avion" type="text" th:field="*{avion}">
+					
+				  	<label for="horasalida">Hora de salida: </label>
+				    <input type="time" class="form-control" id="horasalida">
+				    <label for="fechasalida">Fecha de salida: </label>
+				    <input type="text" class="form-control" id="fechasalida" placeholder="yyyy/mm/dd">
+				  	
+				  	<label for="tarifabase">Tarifa Base: </label>
+				  	<input id="tarifabase" class="form-control" type="number" th:field="*{tarifabase}">
+				  	<label for="tarifaadulto">Tarifa Adulto: </label>
+				  	<input id="tarifaadulto" class="form-control" type="number" min="0.1" max ="10" step="0.1" th:field="*{tarifaadulto}">
+				  	<label for="tarifanino">Tarifa Niño: </label>
+				  	<input id="tarifanino" class="form-control" type="number" min="0.1" max ="10" step="0.1" th:field="*{tarifanino}">
+				  	<label for="tarifafc">Tarifa Primera Clase: </label>
+				  	<input id="tarifafc" class="form-control" type="number" min="0.1" max ="10" step="0.1" th:field="*{tarifafc}">
+				  	
+				  </div>
+				  
+				  <div class="btn-group">
+					  
+					<button type="button" class="btn btn-link">
+						Volver
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Publicar
+					</button>
+		    	  </div>
+			</form>
+			
+			
+		</div>
+		<!-- Panel -->
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

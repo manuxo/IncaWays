@@ -150,8 +150,11 @@ public class Vuelo implements Serializable{
 	@NotNull
 	boolean comprado;
 	
+	@NotNull
     @DateTimeFormat(pattern = "hh:mm:ss")
 	Time horasalida;
+	
+	@NotNull
 	@DateTimeFormat(pattern = "yyyy-MM-dd")
 	Date fechasalida;
 	
