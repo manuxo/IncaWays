@@ -22,6 +22,10 @@ public class CompraestadiaService implements ICompraestadiaService {
 		double costoxdia = ce.getEstadia().getCostoxdia();
 		double costodecompra = costoxdia * ce.getNrodias();
 		ce.setCosto(costodecompra);
+		
+		//REGLA DE NEGOCIO
+		//Una vez realidad la compra, estadia.comprado = true
+		ce.getEstadia().setComprado(true);
 		ces.save(ce);
 	}
 

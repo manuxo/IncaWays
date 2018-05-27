@@ -35,6 +35,8 @@ public class Estadia implements Serializable{
 	double costoxdia;
 	@NotNull
 	String tipoestadia;
+	@NotNull
+	boolean comprado;
 	
 	@ManyToOne(fetch=FetchType.LAZY)
 	private Empresaestadia empresaestadia;
@@ -102,6 +104,14 @@ public class Estadia implements Serializable{
 
 	public static long getSerialversionuid() {
 		return serialVersionUID;
+	}
+
+	public boolean isComprado() {
+		return comprado;
+	}
+
+	public void setComprado(boolean comprado) {
+		this.comprado = comprado;
 	}
 	
 }

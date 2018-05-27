@@ -26,6 +26,16 @@ public class Vuelo implements Serializable{
 
 	private static final long serialVersionUID = 1L;
 	
+	
+	
+	public boolean isComprado() {
+		return comprado;
+	}
+
+	public void setComprado(boolean comprado) {
+		this.comprado = comprado;
+	}
+
 	public Long getId() {
 		return id;
 	}
@@ -137,6 +147,8 @@ public class Vuelo implements Serializable{
 	String origen;
 	@NotNull
 	String destino;
+	@NotNull
+	boolean comprado;
 	
     @DateTimeFormat(pattern = "hh:mm:ss")
 	Time horasalida;

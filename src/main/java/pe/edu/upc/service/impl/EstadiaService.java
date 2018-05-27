@@ -1,5 +1,6 @@
 package pe.edu.upc.service.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -39,8 +40,17 @@ public class EstadiaService implements IEstadiaService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Estadia> findAll() {
-		// TODO Auto-generated method stub
-		return es.findAll();
+		// TODO
+		//Regla de negocio - Solo va a listar en el sitio web los servicios que aun no han sido comprados
+		List<Estadia> estadiasDisponibles = new ArrayList<>();
+		
+		for(Estadia estadia : es.findAll()) {
+			if(!estadia.isComprado()) {
+				estadiasDisponibles.add(estadia);
+			}
+		}
+		
+		return estadiasDisponibles;
 	}
 
 }

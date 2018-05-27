@@ -1,6 +1,7 @@
 package pe.edu.upc.service.impl;
 
 import java.sql.Date;
+import java.util.ArrayList;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -42,7 +43,16 @@ public class VueloService implements IVueloService {
 	@Transactional(readOnly = true)
 	public List<Vuelo> findAll() {
 		// TODO Auto-generated method stub
-		return vs.findAll();
+		
+		List<Vuelo> vuelosDisponibles = new ArrayList<>();
+		
+		for(Vuelo vuelo : vs.findAll()) {
+			if(!vuelo.isComprado()) {
+				vuelosDisponibles.add(vuelo);
+			}
+		}
+		
+		return vuelosDisponibles;
 	}
 
 	@Override

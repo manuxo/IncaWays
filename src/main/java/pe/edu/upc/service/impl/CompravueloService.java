@@ -24,6 +24,10 @@ public class CompravueloService implements ICompravueloService {
 		double montototal = costoAdulto * cv.getNroadulto() + costoNino * cv.getNronino() + costoFC * cv.getNrofc();
 		cv.setMontototal(montototal);
 		cv.setFechaviaje(cv.getVuelo().getFechasalida());
+		
+		//REGLA DE NEGOCIO
+		//Una vez realizada la compra, el campo boolean comprado -> vuelo.comprado = true
+		cv.getVuelo().setComprado(true);
 		cvs.save(cv);
 	}
 	@Override
