@@ -1,10 +1,10 @@
 package pe.edu.upc.controller;
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
@@ -12,13 +12,14 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
 import pe.edu.upc.entity.Estadia;
-import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.ICompraestadiaService;
 import pe.edu.upc.service.ICompravueloService;
 import pe.edu.upc.service.IEstadiaService;
 import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
+
+import java.util.List;
 
 @Controller
 public class ComprasController {
@@ -29,8 +30,6 @@ public class ComprasController {
 	@Autowired
 	private ICompraestadiaService servicioce;
 	
-	@Autowired
-	private IUsuarioService serviciou;
 	
 	@Autowired
 	private IVueloService servicioVuelo;
@@ -39,6 +38,18 @@ public class ComprasController {
 	private IEstadiaService servicioEstadia;
 	
 	//aqui van las funciones que dependen de las vistas.
+	
+	@GetMapping(value = "/compras/listar")
+	public String listar(Model model) {
+		model.addAttribute("titulo", "Mis Compras");
+		
+		List<Compravuelo> compravuelos = serviciocv.findAll();
+		List<Compraestadia> compraestadias = servicioce.findAll();
+		model.addAttribute("compravuelos", compravuelos);
+		model.addAttribute("compraestadias", compraestadias);
+		return "compras/listar";
+	}
+	
 	
 	
 	@RequestMapping(value = "/vuelo/ver/{id}", method= RequestMethod.POST)

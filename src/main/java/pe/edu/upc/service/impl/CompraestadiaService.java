@@ -1,5 +1,7 @@
 package pe.edu.upc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -21,6 +23,12 @@ public class CompraestadiaService implements ICompraestadiaService {
 		double costodecompra = costoxdia * ce.getNrodias();
 		ce.setCosto(costodecompra);
 		ces.save(ce);
+	}
+
+	@Override
+	public List<Compraestadia> findAll() {
+		// TODO Auto-generated method stub
+		return ces.findAll();
 	}
 
 }

@@ -1,5 +1,7 @@
 package pe.edu.upc.service.impl;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
@@ -23,6 +25,11 @@ public class CompravueloService implements ICompravueloService {
 		cv.setMontototal(montototal);
 		cv.setFechaviaje(cv.getVuelo().getFechasalida());
 		cvs.save(cv);
+	}
+	@Override
+	public List<Compravuelo> findAll() {
+		// TODO Auto-generated method stub
+		return cvs.findAll();
 	}
 
 }
