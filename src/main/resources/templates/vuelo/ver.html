@@ -8,9 +8,10 @@
 	<div class="row container">
 		
 		<div class="col-sm-12">
-			<div class="panel panel-default">
-			  <div class="panel-header">Detalles del vuelo</div>
-			  <div class="panel-body">
+			<br>
+			<div class="card">
+			  <div class="card-header bg-primary">Detalles del vuelo</div>
+			  <div class="card-body bg-default">
 			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
 			  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
 			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto}"></p>
@@ -51,6 +52,7 @@
 				  	<input type="hidden" th:value="${vuelo.tarifaadulto}" id="tarifaadulto">
 				  	<input type="hidden" th:value="${vuelo.tarifafc}" id="tarifafc">
 				  	<label for="total">Total: </label>
+				  	<br>
 				  	<input type="text" id="total" disabled>
 				  	
 				  	

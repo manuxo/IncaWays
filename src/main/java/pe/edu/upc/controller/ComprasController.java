@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
@@ -16,10 +17,10 @@ import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.ICompraestadiaService;
 import pe.edu.upc.service.ICompravueloService;
 import pe.edu.upc.service.IEstadiaService;
-import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
 
 import java.util.List;
+
 
 @Controller
 public class ComprasController {
@@ -37,12 +38,13 @@ public class ComprasController {
 	@Autowired
 	private IEstadiaService servicioEstadia;
 	
+	 
+	 
 	//aqui van las funciones que dependen de las vistas.
 	
 	@GetMapping(value = "/compras/listar")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Mis Compras");
-		
 		List<Compravuelo> compravuelos = serviciocv.findAll();
 		List<Compraestadia> compraestadias = servicioce.findAll();
 		model.addAttribute("compravuelos", compravuelos);
@@ -63,9 +65,13 @@ public class ComprasController {
 		System.out.println("Usuario: " + compravuelo.getUsuario().getNombre());
 		System.out.println("Vuelo: " + compravuelo.getVuelo().getOrigen());
 		
+		try {
+			serviciocv.saveCompraVuelo(compravuelo);
+		}catch(Exception e) {
+			e.printStackTrace();
+		}
 		
-		serviciocv.saveCompraVuelo(compravuelo);
-		return "redirect:/vuelo/listar";
+		return "redirect:compras/listar";
 	}
 	
 	@RequestMapping(value = "/estadia/ver/{id}", method= RequestMethod.POST)

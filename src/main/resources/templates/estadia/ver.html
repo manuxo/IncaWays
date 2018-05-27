@@ -6,9 +6,10 @@
 	<div class="row container">
 		
 		<div class="col-sm-12">
-			<div class="panel panel-default">
-			  <div class="panel-header">Detalles de la estadia</div>
-			  <div class="panel-body">
+			<br>
+			<div class="card">
+			  <div class="card-header bg-primary">Detalles de la estadia</div>
+			  <div class="card-body bg-default">
 			  	<p th:text="'Empresa: ' + ${estadiaV.empresaestadia.nombre}"></p>
 			  	<p th:text="'Pais: ' + ${estadiaV.pais}"></p>
 			  	<p th:text="'Ciudad: ' + ${estadiaV.ciudad}"></p>
@@ -37,6 +38,7 @@
 				    <!-- Inputs para calcular el total -->
 				    <input type="hidden" th:value="${estadiaV.costoxdia}" id="costoxdia">
 				    <label for="total">Total: </label>
+				    <br>
 				    <input type="text" id="total" disabled>
 				  </div>
 				 

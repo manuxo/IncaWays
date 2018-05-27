@@ -7,3 +7,15 @@
 .bg-transparent{
 	background-color:inherit!important;
 }
+
+.flex-container{
+	 display: flex;
+  	 flex-direction: row;
+  	 flex-wrap: wrap;
+  	 justify-content: center;
+}
+
+.item-servicio{
+	width:48%!important;
+	margin: 1px;
+}

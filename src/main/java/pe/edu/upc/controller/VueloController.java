@@ -43,7 +43,6 @@ public class VueloController {
 	public String listar(Model model) {
 
 		model.addAttribute("titulo", "Listado de vuelos");
-		
 		List<Vuelo> vuelos = servicio.findAll();
 		
 		// model.addAttribute("clientes", clienteService.findAll());

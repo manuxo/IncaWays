@@ -31,36 +31,34 @@
 		
 		<div class="col-sm-8">
 			<div class="contenedor">
-				<h2>Estadias</h2>
-				<table class="table table-condensed">
-				    <thead>
-				      <tr>
-				        <th>Pais</th>
-				        <th>Ciudad</th>
-				        <th>Tipo estadia</th>
-				        <th>Costo x dia</th>
-				        <th></th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr th:each="estadia:${estadias}">
-				        <td th:text="${estadia.pais}"></td>
-				        <td th:text="${estadia.ciudad}"></td>
-				        <td th:text="${estadia.tipoestadia}"></td>
-				        <td th:text="'$' + ${estadia.costoxdia}"></td>
-				        <td>
-	  						<div class="btn-group">
-							  <a th:href ="@{/estadia/ver/} + ${estadia.id}">
-							  <button type="button" class="btn btn-primary">
-							  	Ver
-							  </button>
+				<h2>Estadias</h2>	
+				
+		    	
+		    	<div class="flex-container">
+					<div class="card item-servicio" th:each="estadia:${estadias}">
+					  <div class="card-header bg-primary">
+					  	<h5 class="card-title" th:text="${estadia.empresaestadia.nombre}" style="color:white;"></h5>
+					  </div>
+					  <div class="card-body bg-default">
+					    
+					    <b>Pais: </b><p class="card-text" th:text="${estadia.pais}"></p>
+					    <b>Ciudad: </b><p class="card-text" th:text="${estadia.ciudad}"></p>
+					    <b>Tipo de estadia: </b><p class="card-text" th:text="${estadia.tipoestadia}"></p>
+					    <b>Coto por dia: $</b><p class="card-text" th:text="${estadia.costoxdia}"></p>
+					  </div>
+					  <div class="float-right">
+						  <div class="btn-group">
+							  <a th:href="@{/estadia/ver/} + ${estadia.id}">
+								<button type="button" class="btn btn-primary" style="margin: 1px!important; color:white;">
+									  	Ver
+								</button>
 							  </a>
-							</div>
-						</td>
-				      </tr>
-				    </tbody>
-				    
-		    	</table>
+						  </div>
+					  </div>
+					</div>
+					
+				</div>
+		    	
 		    	
 			</div>
 		</div>
