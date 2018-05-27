@@ -8,7 +8,7 @@
 		<div class="col-sm-12">
 			<br>
 			<div class="card">
-			  <div class="card-header bg-primary">Detalles de la estadia</div>
+			  <div class="card-header bg-primary" style="color:white!important;">Detalles de la estadia</div>
 			  <div class="card-body bg-default">
 			  	<p th:text="'Empresa: ' + ${estadiaV.empresaestadia.nombre}"></p>
 			  	<p th:text="'Pais: ' + ${estadiaV.pais}"></p>
@@ -16,7 +16,6 @@
 			  	<p th:text="'Direccion: ' + ${estadiaV.direccion}"></p>
 			  	<p th:text="'Costo por dia: $' + ${estadiaV.costoxdia}"></p>
 			  	<p th:text="'Tipo de estadia: ' + ${estadiaV.tipoestadia}"></p>
-			  	<p th:text="'Id: ' + ${estadiaV.id}"></p>
 			  </div>
 			</div>
 			

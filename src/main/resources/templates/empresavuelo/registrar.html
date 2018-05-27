@@ -1,0 +1,51 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row container">
+		
+		<div class="col-sm-12">
+			<!--REGISTRAR EMPRESA VUELO-->
+			<br>
+			<h2>Registrarse</h2>
+			<ul class="nav nav-tabs">
+			  <li class="nav-item">
+			    <a class="nav-link" th:href="@{/usuario/registrar}">Cliente</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link active" th:href="@{/empresavuelo/registrar}">Aerolinea</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" th:href="@{/empresaestadia/registrar}">Empresa de estadia</a>
+			  </li>
+			</ul>
+			<br>
+			<form th:action="@{/empresavuelo/registrar}" th:object="${empresavuelo}" method="post">
+				<div class="form-group">
+					<label for="nombre">Nombre: </label>
+					<input id="nombre" type="text" class="form-control" th:field="*{nombre}" required>
+					<label for="ruc">RUC: </label>
+					<input id="ruc" type="number" class="form-control" th:field="*{ruc}" required>
+					<br>
+				</div>
+				
+				<div class="btn-group">
+					  
+					<button type="button" class="btn btn-link">
+						Volver
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Registrar
+					</button>
+		    	  </div>
+			</form>
+		</div>
+		<!-- Panel -->
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

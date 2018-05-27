@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row container">
+		
+		<div class="col-sm-12">
+			<h2>Registrarse</h2>
+			<ul class="nav nav-tabs">
+			  <li class="nav-item">
+			    <a class="nav-link active" th:href="@{/usuario/registrar}">Cliente</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" th:href="@{/empresavuelo/registrar}">Aerolinea</a>
+			  </li>
+			  <li class="nav-item">
+			    <a class="nav-link" th:href="@{/empresaestadia/registrar}">Empresa de estadia</a>
+			  </li>
+			</ul>
+			<br>
+			<form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+				<div class="form-group">
+					<label for="nombre">Nombres: </label>
+					<input id="nombre" type="text" class="form-control" th:field="*{nombre}" required>
+					<label for="apellido">Apellidos: </label>
+					<input id="apellido" type="text" class="form-control" th:field="*{apellido}" required>
+					<label for="nrotarjeta">Numero de tarjeta: </label>
+					<input id="nrotarjeta" type="number" class="form-control" th:field="*{nrotarjeta}" required>
+					<label for="codigocompra">Codigo de compra: </label>
+					<input id="codigocompra" type="number" class="form-control" th:field="*{codigocompra}" required>
+					<label for="cvv">CVV: </label>
+					<input id="cvv" type="number" class="form-control" th:field="*{cvv}" required>
+					<br>
+				</div>
+				
+				<div class="btn-group">
+					  
+					<button type="button" class="btn btn-link">
+						Volver
+					</button>
+					<button type="submit" class="btn btn-primary">
+						Registrar
+					</button>
+		    	  </div>
+			</form>
+		</div>
+		<!-- Panel -->
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
