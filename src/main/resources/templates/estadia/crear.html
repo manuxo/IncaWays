@@ -22,10 +22,15 @@
 				  <div class="form-group">
 				  
 				  	<label for="pais">Pais: </label>
-				  	<input id="pais" type="text" class="form-control" th:field="*{pais}" required>
-				  	
+				  	<select class="form-control" id="pais" th:field="*{pais}" required>
+					  <option th:each="pais:${paises}" th:value="${pais}" th:text="${pais}">
+					  </option>
+					</select>
 				  	<label for="ciudad">Ciudad: </label>
-				  	<input id="ciudad" type="text" class="form-control" th:field="*{ciudad}" required>
+				  	<select class="form-control" id="ciudad" th:field="*{ciudad}" required>
+					  <option th:each="ciudad:${ciudades}" th:value="${ciudad}" th:text="${ciudad}">
+					  </option>
+					</select>
 				  	
 				  	<label for="direccion">Direccion: </label>
 					<input id="direccion" type="text" class="form-control" th:field="*{direccion}" required>

@@ -49,4 +49,10 @@ public class ComboBuilder {
 		aviones.add("Airbus A380");
 		return aviones;
 	}
+	
+	public static List<String> paisesDisponibles(){
+		List<String> paises = new ArrayList<>();
+		paises.add("Peru");
+		return paises;
+	}
 }

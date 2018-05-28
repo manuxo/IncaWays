@@ -23,6 +23,7 @@ import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.IEmpresaEstadiaService;
 import pe.edu.upc.service.IEstadiaService;
 import pe.edu.upc.service.IUsuarioService;
+import pe.edu.upc.util.ComboBuilder;
 
 @Controller
 public class EstadiaController {
@@ -83,6 +84,8 @@ public class EstadiaController {
 		
 		model.addAttribute("empresaestadias",servicioEmpresaEstadia.findAll());
 		model.addAttribute("estadia", new Estadia());
+		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
+		model.addAttribute("paises",ComboBuilder.paisesDisponibles());
 		model.addAttribute("titulo", "Publicar estadia");
 		return "estadia/crear";
 	}
