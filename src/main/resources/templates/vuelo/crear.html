@@ -22,12 +22,21 @@
 				  <div class="form-group">
 				  
 				  	<label for="origen">Origen: </label>
-				  	<input id="origen" type="text" class="form-control" th:field="*{vuelo.origen}" required>
+				  	<select class="form-control" id="origen" th:field="*{vuelo.origen}" required>
+					  <option th:each="ciudad:${ciudades}" th:value="${ciudad}" th:text="${ciudad}">
+					  </option>
+					</select>
+				  	
 				  	<label for="destino">Destino: </label>
-				  	<input id="destino" type="text" class="form-control" th:field="*{vuelo.destino}" required>
+				  	<select class="form-control" id="destino" th:field="*{vuelo.destino}" required>
+					  <option th:each="ciudad:${ciudades}" th:value="${ciudad}" th:text="${ciudad}">
+					  </option>
+					</select>
 				  	<label for="avion">Avion: </label>
-					<input id="avion" type="text" class="form-control" th:field="*{vuelo.avion}" required>
-					
+					<select class="form-control" id="avion" th:field="*{vuelo.avion}" required>
+					  <option th:each="avion:${aviones}" th:value="${avion}" th:text="${avion}">
+					  </option>
+					</select>
 				  	<label for="horasalida">Hora de salida: </label>
 				    <input type="text" class="form-control" id="horasalida" th:field="*{horasalida}" placeholder="hh:mm:ss" required>
 				    <label for="fechasalida">Fecha de salida: </label>
