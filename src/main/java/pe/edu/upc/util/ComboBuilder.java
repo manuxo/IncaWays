@@ -55,4 +55,21 @@ public class ComboBuilder {
 		paises.add("Peru");
 		return paises;
 	}
+	
+	public static List<String> tiposEstadia(){
+		List<String> tiposDeEstadia = new ArrayList<>();
+		tiposDeEstadia.add("Hotel");
+		tiposDeEstadia.add("Hostal");
+		tiposDeEstadia.add("Motel");
+		tiposDeEstadia.add("Apart-Hotel");
+		tiposDeEstadia.add("Apartment");
+		tiposDeEstadia.add("Boutique Hotel");
+		tiposDeEstadia.add("Resort");
+		tiposDeEstadia.add("Lodge");
+		tiposDeEstadia.add("Business Hotel");
+		tiposDeEstadia.add("Pension");
+		tiposDeEstadia.add("Eco Hotel");
+		tiposDeEstadia.add("Love Hotel");
+		return tiposDeEstadia;
+	}
 }

@@ -86,6 +86,7 @@ public class EstadiaController {
 		model.addAttribute("estadia", new Estadia());
 		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
 		model.addAttribute("paises",ComboBuilder.paisesDisponibles());
+		model.addAttribute("tipoestadias",ComboBuilder.tiposEstadia());
 		model.addAttribute("titulo", "Publicar estadia");
 		return "estadia/crear";
 	}

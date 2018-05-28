@@ -36,8 +36,10 @@
 					<input id="direccion" type="text" class="form-control" th:field="*{direccion}" required>
 					
 					<label for="tipoestadia">Tipo de estadia: </label>
-					<input id="tipoestadia" type="text" class="form-control" th:field="*{tipoestadia}" required>
-					
+					<select class="form-control" id="tipoestadia" th:field="*{tipoestadia}" required>
+					  <option th:each="tipoestadia:${tipoestadias}" th:value="${tipoestadia}" th:text="${tipoestadia}">
+					  </option>
+					</select>
 					<label for="costoxdia">Costo por dia: </label>
 				  	<input id="costoxdia" class="form-control" type="number" th:field="*{costoxdia}" required>
 				  	
