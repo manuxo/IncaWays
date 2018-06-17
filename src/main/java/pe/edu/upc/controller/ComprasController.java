@@ -76,15 +76,9 @@ public class ComprasController {
 	@RequestMapping(value = "/estadia/ver/{id}", method= RequestMethod.POST)
 	// public String guardar(Compravuelo compravuelo) {
 	public String guardar(Model model, Compraestadia compraestadia, @PathVariable(value = "id") Long id) {
-		System.out.print("\n\n\n\n\n\n");
-		System.out.print("holaaaa");
-		System.out.print("\n\n\n\n\n\n");
 		
 		Estadia estadia = servicioEstadia.findById(id);
 		compraestadia.setEstadia(estadia);
-		System.out.print("\n\n\n\n\n\n");
-		System.out.println("Usuario: " + compraestadia.getUsuario().getNombre());
-		System.out.println("Estadia: " + compraestadia.getEstadia().getCiudad());
 		
 		
 		servicioce.saveCompraestadia(compraestadia);
