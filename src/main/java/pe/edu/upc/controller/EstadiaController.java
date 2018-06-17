@@ -6,11 +6,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -37,7 +39,7 @@ public class EstadiaController {
 	@Autowired
 	private IEmpresaEstadiaService servicioEmpresaEstadia;
 	
-	
+	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/listar")
 	public String listar(Model model) {
 
@@ -55,7 +57,7 @@ public class EstadiaController {
 		return "estadia/listar";
 	}
 	
-	
+	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
@@ -77,6 +79,7 @@ public class EstadiaController {
 		return "estadia/ver";
 	}
 	
+	@Secured("ROLE_EmpresaE")
 	@GetMapping(value= "/estadia/crear")
 	public String crear(Model model) {
 		
@@ -91,7 +94,8 @@ public class EstadiaController {
 		return "estadia/crear";
 	}
 	
-	@RequestMapping(value = "/estadia/crear", method= RequestMethod.POST)
+	@Secured("ROLE_EmpresaE")
+	@PostMapping(value = "/estadia/crear")
 	public String guardar(@Valid Estadia estadia, BindingResult bindingResult) {
 		servicio.saveEstadia(estadia);
 		return "redirect:/estadia/listar";

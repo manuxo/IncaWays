@@ -9,11 +9,13 @@ import java.util.List;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
@@ -41,6 +43,7 @@ public class VueloController {
 	@Autowired
 	private IEmpresaVueloService servicioEmpresaVuelo;
 	
+	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/listar")
 	public String listar(Model model) {
 
@@ -57,6 +60,7 @@ public class VueloController {
 		return "vuelo/listar";
 	}
 	
+	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
@@ -79,6 +83,7 @@ public class VueloController {
 		return "vuelo/ver";
 	}
 	
+	@Secured("ROLE_EmpresaV")
 	@GetMapping(value = "/vuelo/crear")
 	public String crear(Model model) {
 		
@@ -93,8 +98,8 @@ public class VueloController {
 		return "vuelo/crear";
 	}
 	
-	
-	@RequestMapping(value = "/vuelo/crear", method= RequestMethod.POST)
+	@Secured("ROLE_EmpresaV")
+	@PostMapping(value = "/vuelo/crear")
 	// public String guardar(Compravuelo compravuelo) {
 	public String guardar(@Valid ContenedorFormulario contenedor, BindingResult bindingResult) {
 		contenedor.getVuelo().setFechasalida(contenedor.formatStringToSqlDate(contenedor.getFechasalida()));

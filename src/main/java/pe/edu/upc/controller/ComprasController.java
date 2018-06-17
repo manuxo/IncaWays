@@ -2,10 +2,12 @@ package pe.edu.upc.controller;
 
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.security.access.annotation.Secured;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 
@@ -41,6 +43,7 @@ public class ComprasController {
 	 
 	//aqui van las funciones que dependen de las vistas.
 	
+	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/compras/listar")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Mis Compras");
@@ -52,8 +55,8 @@ public class ComprasController {
 	}
 	
 	
-	
-	@RequestMapping(value = "/vuelo/ver/{id}", method= RequestMethod.POST)
+	@Secured("ROLE_Cliente")
+	@PostMapping(value = "/vuelo/ver/{id}")
 	// public String guardar(Compravuelo compravuelo) {
 	public String guardar(Model model, Compravuelo compravuelo, @PathVariable(value = "id") Long id) {		
 		
@@ -73,7 +76,8 @@ public class ComprasController {
 		return "redirect:/compras/listar";
 	}
 	
-	@RequestMapping(value = "/estadia/ver/{id}", method= RequestMethod.POST)
+	@Secured("ROLE_Cliente")
+	@PostMapping(value = "/estadia/ver/{id}")
 	// public String guardar(Compravuelo compravuelo) {
 	public String guardar(Model model, Compraestadia compraestadia, @PathVariable(value = "id") Long id) {
 		
