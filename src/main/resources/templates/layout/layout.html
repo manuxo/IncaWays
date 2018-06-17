@@ -47,7 +47,7 @@ crossorigin="anonymous"></script>
 						</li>
 				</ul>
 				<ul class="navbar-nav ml-right">
-					<li class="nav item active">
+					<li class="nav item active" sec:authorize="!isAuthenticated()">
 						<a class="nav-link float-right text-primary" th:href="@{/usuario/registrar}">Registrarse</a>
 					</li>
 					<li sec:authorize="!isAuthenticated()"><a
