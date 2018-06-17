@@ -12,6 +12,7 @@ import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 
 
@@ -38,6 +39,15 @@ public class Users implements Serializable {
 	@OneToMany(fetch = FetchType.LAZY, cascade = CascadeType.ALL)
 	@JoinColumn(name = "user_id")
 	private List<Role> roles;
+	
+	@OneToOne(mappedBy="user",fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+	private Empresaestadia empresaestadia;
+	
+	@OneToOne(mappedBy="user",fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+	private Empresavuelo empresavuelo;
+	
+	@OneToOne(mappedBy="user",fetch = FetchType.LAZY, cascade= CascadeType.ALL)
+	private Usuario usuario;
 	
 	public Long getId() {
 		return id;
@@ -79,4 +89,29 @@ public class Users implements Serializable {
 		this.roles = roles;
 	}
 
+	public Empresaestadia getEmpresaestadia() {
+		return empresaestadia;
+	}
+
+	public void setEmpresaestadia(Empresaestadia empresaestadia) {
+		this.empresaestadia = empresaestadia;
+	}
+
+	public Empresavuelo getEmpresavuelo() {
+		return empresavuelo;
+	}
+
+	public void setEmpresavuelo(Empresavuelo empresavuelo) {
+		this.empresavuelo = empresavuelo;
+	}
+
+	public Usuario getUsuario() {
+		return usuario;
+	}
+
+	public void setUsuario(Usuario usuario) {
+		this.usuario = usuario;
+	}
+
+	
 }

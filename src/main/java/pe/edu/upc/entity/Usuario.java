@@ -12,6 +12,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -40,6 +41,10 @@ public class Usuario implements Serializable {
 	private int codigocompra;
 	@NotNull
 	private int cvv;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	private Users user;
+	
 	
     @OneToMany(mappedBy="usuario",
 			fetch=FetchType.EAGER,
@@ -126,4 +131,14 @@ public class Usuario implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+	
+	
 }

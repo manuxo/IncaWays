@@ -31,6 +31,6 @@ public class LoginController {
 			model.addAttribute("success", "Ha cerrado sesión con éxito!");
 		}
 		
-		return "index";
+		return "users/login";
 	}
 }

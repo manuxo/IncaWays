@@ -11,6 +11,7 @@ import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 
@@ -32,6 +33,9 @@ public class Empresavuelo implements Serializable {
 	
 	@NotNull
 	int ruc;
+	
+	@OneToOne(fetch = FetchType.LAZY)
+	private Users user;
 	
 	@OneToMany(fetch=FetchType.EAGER,cascade=CascadeType.ALL,mappedBy="empresavuelo")
 	@Fetch(value = FetchMode.SUBSELECT)
@@ -79,7 +83,21 @@ public class Empresavuelo implements Serializable {
 	public static long getSerialversionuid() {
 		return serialVersionUID;
 	}
-	
-	
+
+	public Users getUser() {
+		return user;
+	}
+
+	public void setUser(Users user) {
+		this.user = user;
+	}
+
+	public List<Vuelo> getVuelos() {
+		return vuelos;
+	}
+
+	public void setVuelos(List<Vuelo> vuelos) {
+		this.vuelos = vuelos;
+	}
 	
 }
