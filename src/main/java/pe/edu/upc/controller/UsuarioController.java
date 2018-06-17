@@ -47,6 +47,6 @@ public class UsuarioController {
 		userService.saveUser(usuario.getUser());
 		roleService.saveRole(role);
 		usuarioService.saveUsuario(usuario);
-		return "redirect:/";
+		return "redirect:/login";
 	}
 }

@@ -25,7 +25,7 @@ spring:
   #estrategia de generacion de base de datos
   datasource:
     driverClassName: org.postgresql.Driver
-    url: jdbc:postgresql://localhost/db_springboot
+    url: jdbc:postgresql://localhost/db_incaways
     username: postgres
     password: admin
    
