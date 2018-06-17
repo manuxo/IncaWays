@@ -7,6 +7,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -20,11 +22,13 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Empresaestadia;
 import pe.edu.upc.entity.Estadia;
+import pe.edu.upc.entity.Users;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.IEmpresaEstadiaService;
 import pe.edu.upc.service.IEstadiaService;
 import pe.edu.upc.service.IUsuarioService;
+import pe.edu.upc.service.impl.JpaUserDetailsService;
 import pe.edu.upc.util.ComboBuilder;
 
 @Controller
@@ -38,6 +42,9 @@ public class EstadiaController {
 	
 	@Autowired
 	private IEmpresaEstadiaService servicioEmpresaEstadia;
+	
+	@Autowired
+	private JpaUserDetailsService servicioUsers;
 	
 	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/listar")
@@ -97,6 +104,17 @@ public class EstadiaController {
 	@Secured("ROLE_EmpresaE")
 	@PostMapping(value = "/estadia/crear")
 	public String guardar(@Valid Estadia estadia, BindingResult bindingResult) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
+		estadia.setEmpresaestadia(empresaestadia);
 		servicio.saveEstadia(estadia);
 		return "redirect:/estadia/listar";
 	}

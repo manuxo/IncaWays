@@ -10,6 +10,8 @@ import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.access.annotation.Secured;
+import org.springframework.security.core.context.SecurityContextHolder;
+import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.validation.BindingResult;
@@ -24,11 +26,13 @@ import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
 import pe.edu.upc.entity.Empresavuelo;
 import pe.edu.upc.entity.Estadia;
+import pe.edu.upc.entity.Users;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.IEmpresaVueloService;
 import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
+import pe.edu.upc.service.impl.JpaUserDetailsService;
 import pe.edu.upc.util.ComboBuilder;
 
 @Controller
@@ -42,6 +46,9 @@ public class VueloController {
 	
 	@Autowired
 	private IEmpresaVueloService servicioEmpresaVuelo;
+	
+	@Autowired
+	private JpaUserDetailsService servicioUsers;
 	
 	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/listar")
@@ -104,6 +111,19 @@ public class VueloController {
 	public String guardar(@Valid ContenedorFormulario contenedor, BindingResult bindingResult) {
 		contenedor.getVuelo().setFechasalida(contenedor.formatStringToSqlDate(contenedor.getFechasalida()));
 		contenedor.getVuelo().setHorasalida(Time.valueOf(contenedor.getHorasalida()));
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresavuelo empresavuelo = servicioEmpresaVuelo.findByUser(user.getId());
+		
+		contenedor.getVuelo().setEmpresavuelo(empresavuelo);
+		
 		servicio.saveVuelo(contenedor.getVuelo());
 		return "redirect:/vuelo/listar";
 	}

@@ -24,16 +24,6 @@
 			<br>
 			
 			<form th:action="@{/vuelo/ver/} + ${vuelo.id}" th:object="${compravuelo}" method="post">
-			
-				  <div class="form-group">
-				    <label for="usuario">Seleccione usuario: </label>
-				    <select class="form-control" id="usuario" th:field="*{usuario}">
-					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
-					  </option>
-					</select>
-				  </div>
-				  
-				  
 				  
 				  <div class="form-group">
 				  	<label for="nroadulto">Cantidad de adultos:</label>

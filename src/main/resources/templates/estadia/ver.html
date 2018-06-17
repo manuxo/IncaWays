@@ -23,13 +23,6 @@
 			
 			<form th:action="@{/estadia/ver/} + ${estadiaV.id}" th:object="${compraestadia}" method="post">
 				  <div class="form-group">
-				    <label for="usuario">Seleccione usuario: </label>
-				    <select class="form-control" id="usuario" th:field="*{usuario}">
-					  <option th:each="usuario:${usuarios}" th:value="${usuario.id}" th:text="${usuario.nombre}+' '+${usuario.apellido}">
-					  </option>
-					</select>
-				  </div>
-				  <div class="form-group">
 				    <label for="nrodias">Seleccione el numero de dias: </label>
 				    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias">
 				    

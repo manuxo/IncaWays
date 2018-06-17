@@ -53,4 +53,8 @@ public class JpaUserDetailsService implements UserDetailsService {
 		user.setPassword(passwordEncoder.encode(passw));
 		userRepository.save(user);
 	}
+	
+	public Users findByUsername(String username) {
+		return userRepository.findByUsername(username);
+	}
 }

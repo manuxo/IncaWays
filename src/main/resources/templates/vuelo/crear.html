@@ -10,14 +10,6 @@
 		<div class="col-sm-12">
 			<h2>Publicar Vuelo</h2>
 			<form th:action="@{/vuelo/crear}" th:object="${contenedor}" method="post">
-			
-				  <div class="form-group">
-				    <label for="empresavuelo">Seleccione empresa: </label>
-				    <select class="form-control" id="empresavuelo" th:field="*{vuelo.empresavuelo}" required>
-					  <option th:each="empresavuelo:${empresavuelos}" th:value="${empresavuelo.id}" th:text="${empresavuelo.nombre}">
-					  </option>
-					</select>
-				  </div>
 				  
 				  <div class="form-group">
 				  
@@ -45,11 +37,11 @@
 				  	<label for="tarifabase">Tarifa Base: </label>
 				  	<input id="tarifabase" class="form-control" type="number" min="1"  th:field="*{vuelo.tarifabase}" required>
 				  	<label for="tarifaadulto">Tarifa Adulto: </label>
-				  	<input id="tarifaadulto" class="form-control" type="number" min="1" th:field="*{vuelo.tarifaadulto}" required>
+				  	<input id="tarifaadulto" class="form-control" type="number" min="0.1" step="0.1" max="3" th:field="*{vuelo.tarifaadulto}" required>
 				  	<label for="tarifanino">Tarifa Niño: </label>
-				  	<input id="tarifanino" class="form-control" type="number" min="1" th:field="*{vuelo.tarifanino}" required>
+				  	<input id="tarifanino" class="form-control" type="number" min="1" step="0.1" max="3" th:field="*{vuelo.tarifanino}" required>
 				  	<label for="tarifafc">Tarifa Primera Clase: </label>
-				  	<input id="tarifafc" class="form-control" type="number" min="1" th:field="*{vuelo.tarifafc}" required>
+				  	<input id="tarifafc" class="form-control" type="number" min="1" step="0.1" max="3" th:field="*{vuelo.tarifafc}" required>
 				  	
 				  </div>
 				  

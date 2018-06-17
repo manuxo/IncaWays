@@ -34,4 +34,10 @@ public class EmpresavueloService implements IEmpresaVueloService {
 		return evs.findAll();
 	}
 
+	@Override
+	public Empresavuelo findByUser(Long idUser) {
+		// TODO Auto-generated method stub
+		return evs.findByUser(idUser);
+	}
+
 }

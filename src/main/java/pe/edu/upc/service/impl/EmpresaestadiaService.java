@@ -34,4 +34,10 @@ public class EmpresaestadiaService implements IEmpresaEstadiaService {
 		return ees.findAll();
 	}
 
+	@Override
+	public Empresaestadia findByUser(Long idUser) {
+		// TODO Auto-generated method stub
+		return ees.findByUser(idUser);
+	}
+
 }
