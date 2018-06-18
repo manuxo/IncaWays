@@ -12,7 +12,7 @@ public interface ICompraestadiaService {
 	
 	public List<Compraestadia> findAll();
 	
-	//public List<Compraestadia> findByIDEstadia(int id);
-	//public List<Compraestadia> findByIDUsuario(int id);
+	public List<Compraestadia> findByIdEmpresa(Long idEmpresa);
 	
+	public List<Compraestadia> findByIdUsuario(Long idUsuario);
 }

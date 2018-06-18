@@ -41,10 +41,16 @@ crossorigin="anonymous"></script>
 							  </button>
 							  <div class="dropdown-menu">
 							    <a class="dropdown-item" th:href="@{/vuelo/crear}" sec:authorize="hasRole('ROLE_EmpresaV')">Publicar Vuelo</a>
+							    <a class="dropdown-item" th:href="@{/vuelo/misvuelos}" sec:authorize="hasRole('ROLE_EmpresaV')">Mis Vuelos</a>
 							    <a class="dropdown-item" th:href="@{/estadia/crear}" sec:authorize="hasRole('ROLE_EmpresaE')">Publicar Estadia</a>
+							    <a class="dropdown-item" th:href="@{/estadia/misestadias}" sec:authorize="hasRole('ROLE_EmpresaE')">Mis Estadias</a>
 							  </div>
 							</div>
 						</li>
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/ventas/vuelos}" sec:authorize="hasRole('ROLE_EmpresaV')">Mis Ventas</a></li>
+						<li class="nav-item"><a class="nav-link"
+						th:href="@{/ventas/estadias}" sec:authorize="hasRole('ROLE_EmpresaE')">Mis Ventas</a></li>
 				</ul>
 				<ul class="navbar-nav ml-right">
 					<li class="nav item active" sec:authorize="!isAuthenticated()">
@@ -89,7 +95,7 @@ crossorigin="anonymous"></script>
 	<footer th:fragment="footer" class="container">
 		<hr />
 		<p>
-			Powered by  <a href="https://www.linkedin.com/in/henrymendozapuerta/" target=_blank>Incaways</a>.&copy; Company 2018.
+			Powered by  <a href="https://github.com/manuxo/IncaWays" target=_blank>Incaways</a>.&copy; Company 2018.
 		</p>
 		
 		

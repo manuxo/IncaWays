@@ -71,4 +71,10 @@ public class VueloService implements IVueloService {
 		return vs.findByIdVuelo(id);
 	}
 
+	@Override
+	public List<Vuelo> findByIdEmpresa(Long idEmpresa) {
+		// TODO Auto-generated method stub
+		return vs.findByEmpresaId(idEmpresa);
+	}
+
 }

@@ -10,23 +10,24 @@ import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
+import pe.edu.upc.entity.Empresaestadia;
+import pe.edu.upc.entity.Empresavuelo;
 import pe.edu.upc.entity.Estadia;
 import pe.edu.upc.entity.Users;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.ICompraestadiaService;
 import pe.edu.upc.service.ICompravueloService;
+import pe.edu.upc.service.IEmpresaEstadiaService;
+import pe.edu.upc.service.IEmpresaVueloService;
 import pe.edu.upc.service.IEstadiaService;
 import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
 import pe.edu.upc.service.impl.JpaUserDetailsService;
 
-import java.security.Principal;
 import java.util.List;
 
 
@@ -39,6 +40,11 @@ public class ComprasController {
 	@Autowired
 	private ICompraestadiaService servicioce;
 	
+	@Autowired
+	private IEmpresaEstadiaService servicioEmpresaEstadia;
+	
+	@Autowired
+	private IEmpresaVueloService servicioEmpresaVuelo;
 	
 	@Autowired
 	private IVueloService servicioVuelo;
@@ -52,26 +58,86 @@ public class ComprasController {
 	@Autowired
 	private JpaUserDetailsService servicioUsers;
 	 
-	//aqui van las funciones que dependen de las vistas.
 	
 	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/compras/listar")
 	public String listar(Model model) {
 		model.addAttribute("titulo", "Mis Compras");
-		List<Compravuelo> compravuelos = serviciocv.findAll();
-		List<Compraestadia> compraestadias = servicioce.findAll();
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		
+		Usuario usuario = servicioUsuarios.findByUser(user.getId());
+		
+		List<Compravuelo> compravuelos = serviciocv.findByIdUsuario(usuario.getId());
+		List<Compraestadia> compraestadias = servicioce.findByIdUsuario(usuario.getId());
 		model.addAttribute("compravuelos", compravuelos);
 		model.addAttribute("compraestadias", compraestadias);
 		return "compras/listar";
 	}
 	
+	@Secured("ROLE_EmpresaE")
+	@GetMapping(value= "/ventas/estadias")
+	public String listarVentasEstadias(Model model) {
+		model.addAttribute("titulo", "Mis Ventas");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
+		
+		
+		List<Compraestadia> compraestadias = servicioce.findByIdEmpresa(empresaestadia.getId());
+		model.addAttribute("compraestadias", compraestadias);
+		
+		return "ventas/estadias";
+	}
+	
+	@Secured("ROLE_EmpresaV")
+	@GetMapping(value= "/ventas/vuelos")
+	public String listarVentasVuelos(Model model) {
+		model.addAttribute("titulo", "Mis Ventas");
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresavuelo empresavuelo = servicioEmpresaVuelo.findByUser(user.getId());
+		
+		List<Compravuelo> compravuelos = serviciocv.findByIdEmpresa(empresavuelo.getId());
+		
+		model.addAttribute("compravuelos",compravuelos);
+		return "ventas/vuelos";
+	}
+	
 	
 	@Secured("ROLE_Cliente")
 	@PostMapping(value = "/vuelo/ver/{id}")
-	// public String guardar(Compravuelo compravuelo) {
 	public String guardar(Model model, Compravuelo compravuelo, @PathVariable(value = "id") Long id) {		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
+		
+		
 		if(principal instanceof UserDetails) {
 			username = ((UserDetails)principal).getUsername();
 		}else {

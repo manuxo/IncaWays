@@ -67,6 +67,38 @@ public class VueloController {
 		return "vuelo/listar";
 	}
 	
+	@Secured("ROLE_EmpresaV")
+	@GetMapping(value="/vuelo/misvuelos")
+	public String listarPorEmpresaVuelo(Model model) {
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		
+		Empresavuelo empresavuelo = servicioEmpresaVuelo.findByUser(user.getId());
+		
+		
+		model.addAttribute("titulo", "Listado de vuelos");
+		List<Vuelo> vuelos = servicio.findByIdEmpresa(empresavuelo.getId());
+		
+		// model.addAttribute("clientes", clienteService.findAll());
+		// TODO
+		model.addAttribute("vuelos", vuelos);
+		
+		//Objeto utilizado para la busqueda de vuelos dentro de la vista
+		model.addAttribute("vuelo",new Vuelo());
+		
+		return "vuelo/misvuelos";
+	}
+	
+	
 	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
@@ -125,12 +157,9 @@ public class VueloController {
 		contenedor.getVuelo().setEmpresavuelo(empresavuelo);
 		
 		servicio.saveVuelo(contenedor.getVuelo());
-		return "redirect:/vuelo/listar";
+		return "redirect:/vuelo/misvuelos";
 	}
 	
-	
-	
-
 }
 
 class ContenedorFormulario{

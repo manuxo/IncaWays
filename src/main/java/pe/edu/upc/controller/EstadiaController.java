@@ -64,6 +64,32 @@ public class EstadiaController {
 		return "estadia/listar";
 	}
 	
+	@Secured("ROLE_EmpresaE")
+	@GetMapping(value = "estadia/misestadias")
+	public String listarEstadiasPorEmpresa(Model model) {
+		model.addAttribute("titulo", "Listado de estadias");
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		
+		
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
+
+		List<Estadia> estadias = servicio.findByIdEmpresa(empresaestadia.getId());
+		
+		model.addAttribute("estadias", estadias);
+		
+		model.addAttribute("estadia",new Estadia());
+		
+		return "estadia/misestadias";
+	}
+	
 	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
@@ -90,8 +116,6 @@ public class EstadiaController {
 	@GetMapping(value= "/estadia/crear")
 	public String crear(Model model) {
 		
-		System.out.print("\n\n\n\n ENTREEEE \n\n\n\n");
-		
 		model.addAttribute("empresaestadias",servicioEmpresaEstadia.findAll());
 		model.addAttribute("estadia", new Estadia());
 		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
@@ -116,6 +140,6 @@ public class EstadiaController {
 		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
 		estadia.setEmpresaestadia(empresaestadia);
 		servicio.saveEstadia(estadia);
-		return "redirect:/estadia/listar";
+		return "redirect:/estadia/misestadias";
 	}
 }

@@ -19,4 +19,6 @@ public interface IVueloService {
 	//public Vuelo findByEmpresaID(int id);
 	
 	Vuelo findByIdVuelo(Long id);
+	
+	List<Vuelo> findByIdEmpresa(Long idEmpresa);
 }

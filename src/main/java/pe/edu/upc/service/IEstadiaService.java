@@ -9,6 +9,6 @@ public interface IEstadiaService {
 	public void deleteEstadia(Long id);
 	public Estadia findById(Long id);
 	public List<Estadia> findAll();
-	//public Estadia findByEmpresa(Empresaestadia ee); O
-	//public Estadia findByEmpresaID(int id);
+
+	public List<Estadia> findByIdEmpresa(Long idEmpresa);
 }

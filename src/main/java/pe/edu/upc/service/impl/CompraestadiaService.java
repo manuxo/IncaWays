@@ -30,9 +30,24 @@ public class CompraestadiaService implements ICompraestadiaService {
 	}
 
 	@Override
+	@Transactional(readOnly=true)
 	public List<Compraestadia> findAll() {
 		// TODO Auto-generated method stub
 		return ces.findAll();
 	}
+
+	@Override
+	@Transactional(readOnly=true)
+	public List<Compraestadia> findByIdEmpresa(Long idEmpresa) {
+		// TODO Auto-generated method stub
+		return ces.findByIdEmpresa(idEmpresa);
+	}
+
+	@Override
+	public List<Compraestadia> findByIdUsuario(Long idUsuario) {
+		// TODO Auto-generated method stub
+		return ces.findByIdUsuario(idUsuario);
+	}
+
 
 }

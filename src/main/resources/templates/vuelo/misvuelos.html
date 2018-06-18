@@ -6,9 +6,10 @@
 	<header th:replace="layout/layout :: header"></header>
 	
 	<div class="row contenedor">
+	
 		<div class="col-sm-12">
 			<div class="contenedor">
-				<h2>Vuelos</h2>
+				<h2>Mis Servicios</h2>
 				<table class="table table-condensed">
 				    <thead>
 				      <tr>
@@ -16,8 +17,8 @@
 				        <th>Destino</th>
 				        <th>Fecha de Salida</th>
 				        <th>Hora de Salida</th>
+				        <th>Estado</th>
 				        <th>Tarifa Base</th>
-				        <th></th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -26,19 +27,13 @@
 				        <td th:text="${vuelo.destino}"></td>
 				        <td th:text="${vuelo.fechasalida}"></td>
 				        <td th:text="${vuelo.horasalida}"></td>
-				        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
 				        <td>
-	  						<div class="btn-group">
-							  <a th:href="@{/vuelo/ver/} + ${vuelo.id}">
-							  <button type="button" class="btn btn-primary">
-							  	Ver
-							  </button>
-							  </a>
-							</div>
-						</td>
+				        	<span th:if="${vuelo.comprado}" th:text="Vendido"></span>
+				        	<span th:unless="${vuelo.comprado}" th:text="Pendiente"></span>
+				        </td>
+				        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
 				      </tr>
 				    </tbody>
-				    
 		    	</table>
 		    	
 			</div>

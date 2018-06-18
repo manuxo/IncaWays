@@ -57,4 +57,10 @@ public class EstadiaService implements IEstadiaService {
 		return estadiasDisponibles;
 	}
 
+	@Override
+	public List<Estadia> findByIdEmpresa(Long idEmpresa) {
+		// TODO Auto-generated method stub
+		return es.findByIdEmpresa(idEmpresa);
+	}
+
 }

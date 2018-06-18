@@ -18,8 +18,9 @@ public interface IVueloDAO extends JpaRepository<Vuelo,Long> {
 	                             @Param("fechasalida") Date fechasalida);
 	@Query("select v from Vuelo v where v.id =:id")
 	Vuelo findByIdVuelo(@Param("id") Long id);
-	/*
-	@Query("select v from Vuelo where v.origen=?1 and v.destino=?2 and v.fechasalida=?3")
-	Vuelo findByOrigen(String origen, String destino, Date fecha);
-	*/
+	
+	
+	@Query("select v from Vuelo v join fetch v.empresavuelo em where em.id =:idEmpresa")
+	List<Vuelo> findByEmpresaId(@Param("idEmpresa") Long idEmpresa);
+	
 }

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row contenedor">
+		<div class="col-sm-12">
+			<div class="contenedor">
+				<h2>Mis ventas</h2>
+				<table class="table table-condensed">
+				    <thead>
+				      <tr>
+				        <th>Aerolinea</th>
+				        <th>Fecha de salida</th>
+				        <th>Usuario</th>
+				        <th>Total</th>
+				      </tr>
+				    </thead>
+				    <tbody>
+				      <tr th:each="compravuelo:${compravuelos}">
+				        <td th:text="${compravuelo.vuelo.empresavuelo.nombre}"></td>
+				        <td th:text="${compravuelo.vuelo.fechasalida}"></td>
+				        <td th:text="${compravuelo.usuario.nombre} + ' ' + ${compravuelo.usuario.apellido}"></td>
+				        <td th:text="'$ ' + ${compravuelo.montototal}"></td>
+				      </tr>
+				    </tbody>
+				    
+		    	</table>
+			</div>
+		</div>
+		<!-- .Listado de compravuelo -->
+		<!-- .col-sm-6 -->
+		
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>
