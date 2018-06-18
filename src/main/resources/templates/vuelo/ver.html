@@ -9,8 +9,9 @@
 		
 		<div class="col-sm-12">
 			<br>
+			<h2 th:text="'Vuelo #' + ${vuelo.id}"></h2>
 			<div class="card">
-			  <div class="card-header bg-primary" style="color:white!important;">Detalles del vuelo</div>
+			  <div class="card-header bg-dark" style="color:white!important;">Detalles</div>
 			  <div class="card-body bg-default">
 			    <p th:text="'Aerolinea: ' + ${vuelo.empresavuelo.nombre}"></p>
 			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
@@ -44,17 +45,17 @@
 				  	<input type="hidden" th:value="${vuelo.tarifafc}" id="tarifafc">
 				  	<label for="total">Total: </label>
 				  	<br>
-				  	<input type="text" id="total" disabled>
+				  	<input type="text" id="total" class="form-control" disabled>
 				  	
 				  	
 				  </div>
 				  
 				  <div class="btn-group">
 					  
-					<button type="button" class="btn btn-link">
+					<a type="button" class="btn btn-light" th:href="@{/vuelo/listar}">
 						Volver
-					</button>
-					<button type="submit" class="btn btn-primary">
+					</a>
+					<button type="submit" class="btn btn-dark">
 						Comprar
 					</button>
 		    	  </div>

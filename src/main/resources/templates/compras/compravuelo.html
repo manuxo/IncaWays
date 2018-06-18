@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row contenedor">
+		<div class="col-sm-6">
+			<div class="contenedor">
+				<h2 th:text="'Compra de vuelo #' + ${compravuelo.id}"></h2>
+				<div class="card">
+				  <div class="card-header bg-dark" style="color:white!important;">Información</div>
+				  <div class="card-body">
+				  	<p th:text="'#Pasajes niños: ' + ${compravuelo.nronino}"></p>
+				  	<p th:text="'#Pasajes adultos: ' + ${compravuelo.nroadulto}"></p>
+				  	<p th:text="'#Pasajes en primera clase ' + ${compravuelo.nrofc}"></p>
+				  	<p th:text="'Aerolinea: ' + ${compravuelo.vuelo.empresavuelo.nombre}"></p>
+				  	<p th:text="'Fecha de viaje: ' + ${compravuelo.fechaviaje}"></p>
+				  	<p th:text="'Total: $' + ${compravuelo.montototal}"></p>
+				  </div> 
+				</div>
+				<br>
+				<div class="btn-group">
+					<a type="button" class="btn btn-light" th:href="@{/compras/listar}">Volver</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

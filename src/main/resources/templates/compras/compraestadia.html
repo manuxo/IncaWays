@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	
+	<div class="row contenedor">
+		<div class="col-sm-6">
+			<div class="contenedor">
+				<h2 th:text="'Compra de estadia #' + ${compraestadia.id}"></h2>
+				<div class="card">
+				  <div class="card-header bg-dark" style="color:white!important;">Información</div>
+				  <div class="card-body">
+				  	<p th:text="'#Dias: ' + ${compraestadia.nrodias}"></p>
+				  	<p th:text="'Usuario: ' + ${compraestadia.usuario.nombre} + ' ' + ${compraestadia.usuario.apellido}"></p>
+				  	<p th:text="'Tipo de estadia: ' + ${compraestadia.estadia.tipoestadia}"></p>
+				  	<p th:text="'Pais: ' + ${compraestadia.estadia.pais}"></p>
+				  	<p th:text="'Ciudad: ' + ${compraestadia.estadia.ciudad}"></p>
+				  	<p th:text="'Direccion: ' + ${compraestadia.estadia.direccion}"></p>
+				  	<p th:text="'Total: $' + ${compraestadia.costo}"></p>
+				  </div> 
+				</div>
+				<br>
+				<div class="btn-group">
+					<a type="button" class="btn btn-light" th:href="@{/compras/listar}">Volver</a>
+				</div>
+			</div>
+		</div>
+	</div>
+	<!-- Contenido Principal -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

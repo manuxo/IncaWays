@@ -12,6 +12,8 @@ public interface ICompraestadiaService {
 	
 	public List<Compraestadia> findAll();
 	
+	public Compraestadia findById(Long id);
+	
 	public List<Compraestadia> findByIdEmpresa(Long idEmpresa);
 	
 	public List<Compraestadia> findByIdUsuario(Long idUsuario);

@@ -45,5 +45,10 @@ public class CompravueloService implements ICompravueloService {
 		// TODO Auto-generated method stub
 		return cvs.findByIdUsuario(idUsuario);
 	}
+	@Override
+	public Compravuelo findById(Long id) {
+		// TODO Auto-generated method stub
+		return cvs.findById(id).orElse(null);
+	}
 
 }

@@ -130,6 +130,26 @@ public class ComprasController {
 		return "ventas/vuelos";
 	}
 	
+	@Secured("ROLE_Cliente")
+	@GetMapping(value="/compras/compravuelo/{id}")
+	public String verCompraVuelo(Model model, @PathVariable(value="id") Long id){
+		model.addAttribute("titulo","Mis Compras");
+		
+		Compravuelo compravuelo = serviciocv.findById(id);
+		model.addAttribute("compravuelo",compravuelo);
+		return "compras/compravuelo";
+	}
+	
+	@Secured("ROLE_Cliente")
+	@GetMapping(value="/compras/compraestadia/{id}")
+	public String verCompraEstadia(Model model, @PathVariable(value="id") Long id){
+		model.addAttribute("titulo","Mis Compras");
+		
+		Compraestadia compraestadia = servicioce.findById(id);
+		model.addAttribute("compraestadia",compraestadia);
+		return "compras/compraestadia";
+	}
+	
 	
 	@Secured("ROLE_Cliente")
 	@PostMapping(value = "/vuelo/ver/{id}")

@@ -8,6 +8,7 @@
 	<div class="row contenedor">
 		<div class="col-sm-6">
 			<div class="contenedor">
+				<br>
 				<h2>Compras de vuelos</h2>
 				<table class="table table-condensed">
 				    <thead>
@@ -26,8 +27,8 @@
 				        <td th:text="'$ ' + ${compravuelo.montototal}"></td>
 				        <td>
 	  						<div class="btn-group">
-							  <a th:href="@{/compravuelo/ver/} + ${compravuelo.id}">
-							  <button type="button" class="btn btn-primary">
+							  <a th:href="@{/compras/compravuelo/} + ${compravuelo.id}">
+							  <button type="button" class="btn btn-dark">
 							  	Ver
 							  </button>
 							  </a>
@@ -47,6 +48,7 @@
 		
 		<div class="col-sm-6">
 			<div class="contenedor">
+				<br>
 				<h2>Compras de estadias</h2>
 				<table class="table table-condensed">
 				    <thead>
@@ -65,8 +67,8 @@
 				        <td th:text="'$ ' + ${compraestadia.costo}"></td>
 				        <td>
 	  						<div class="btn-group">
-							  <a th:href="@{/compraestadia/ver/} + ${compraestadia.id}">
-							  <button type="button" class="btn btn-primary">
+							  <a th:href="@{/compras/compraestadia/} + ${compraestadia.id}">
+							  <button type="button" class="btn btn-dark">
 							  	Ver
 							  </button>
 							  </a>

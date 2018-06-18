@@ -54,13 +54,13 @@ crossorigin="anonymous"></script>
 				</ul>
 				<ul class="navbar-nav ml-right">
 					<li class="nav item active" sec:authorize="!isAuthenticated()">
-						<a class="nav-link float-right text-primary" th:href="@{/usuario/registrar}">Registrarse</a>
+						<a class="nav-link float-right text-light" th:href="@{/usuario/registrar}">Registrarse</a>
 					</li>
 					<li sec:authorize="!isAuthenticated()"><a
-						class="btn btn-outline-primary" th:href="@{/login}">Iniciar sesión</a></li>
+						class="btn btn-outline-light" th:href="@{/login}">Iniciar sesión</a></li>
 
 					<li sec:authorize="isAuthenticated()" class="dropdown show"><a
-						class="btn btn-outline-primary dropdown-toggle" href="#"
+						class="btn btn-outline-light dropdown-toggle text-info" href="#"
 						role="button" id="dropdownMenuLink" data-toggle="dropdown"
 						aria-haspopup="true" aria-expanded="false"><span
 							sec:authentication="name"></span></a>

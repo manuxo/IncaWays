@@ -7,8 +7,9 @@
 		
 		<div class="col-sm-12">
 			<br>
+			<h2 th:text="'Estadia #' + ${estadiaV.id}"></h2>
 			<div class="card">
-			  <div class="card-header bg-primary" style="color:white!important;">Detalles de la estadia</div>
+			  <div class="card-header bg-dark" style="color:white!important;" >Detalles</div>
 			  <div class="card-body bg-default">
 			  	<p th:text="'Empresa: ' + ${estadiaV.empresaestadia.nombre}"></p>
 			  	<p th:text="'Pais: ' + ${estadiaV.pais}"></p>
@@ -22,7 +23,7 @@
 			<br>
 			
 			<form th:action="@{/estadia/ver/} + ${estadiaV.id}" th:object="${compraestadia}" method="post">
-				  <div class="form-group">
+				  <div class="form-group bg-default">
 				    <label for="nrodias">Seleccione el numero de dias: </label>
 				    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias">
 				    
@@ -31,16 +32,14 @@
 				    <input type="hidden" th:value="${estadiaV.costoxdia}" id="costoxdia">
 				    <label for="total">Total: </label>
 				    <br>
-				    <input type="text" id="total" disabled>
+				    <input type="text" id="total" class="form-control" disabled>
 				  </div>
 				 
-				  
-				  
-				  <div class="btn-group">
-					<button type="button" class="btn btn-link">
+				  <div class="btn-group bg-default">
+					<a type="button" class="btn btn-light" th:href="@{/estadia/listar}">
 						Volver
-					</button>
-					<button type="submit" class="btn btn-primary">
+					</a>
+					<button type="submit" class="btn btn-dark">
 						Comprar
 					</button>
 		    	  </div>

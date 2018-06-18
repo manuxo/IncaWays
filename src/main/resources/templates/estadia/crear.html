@@ -8,6 +8,7 @@
 	<div class="row container">
 		
 		<div class="col-sm-12">
+			<br>
 			<h2>Publicar Estadia</h2>
 			<form th:action="@{/estadia/crear}" th:object="${estadia}" method="post">
 				  <div class="form-group">
@@ -38,10 +39,10 @@
 				  
 				  <div class="btn-group">
 					  
-					<button type="button" class="btn btn-link">
+					<a type="button" class="btn btn-light" th:href="@{/estadia/misestadias}">
 						Volver
-					</button>
-					<button type="submit" class="btn btn-primary">
+					</a>
+					<button type="submit" class="btn btn-dark">
 						Publicar
 					</button>
 		    	  </div>

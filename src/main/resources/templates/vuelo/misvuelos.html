@@ -19,6 +19,7 @@
 				        <th>Hora de Salida</th>
 				        <th>Estado</th>
 				        <th>Tarifa Base</th>
+				        <th></th>
 				      </tr>
 				    </thead>
 				    <tbody>
@@ -28,10 +29,16 @@
 				        <td th:text="${vuelo.fechasalida}"></td>
 				        <td th:text="${vuelo.horasalida}"></td>
 				        <td>
-				        	<span th:if="${vuelo.comprado}" th:text="Vendido"></span>
-				        	<span th:unless="${vuelo.comprado}" th:text="Pendiente"></span>
+				        	<span th:if="${vuelo.comprado}" th:text="Vendido" class="text-success"></span>
+				        	<span th:unless="${vuelo.comprado}" th:text="Pendiente" class="text-warning"></span>
 				        </td>
 				        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
+				        <td th:if="${!vuelo.comprado}">
+				        	<div class="btn-group">
+				        		<a class="btn btn-secondary text-light">Editar</a>
+				        		<a class="btn btn-danger text-light">Eliminar</a>
+				        	</div>
+				        </td>
 				      </tr>
 				    </tbody>
 		    	</table>
