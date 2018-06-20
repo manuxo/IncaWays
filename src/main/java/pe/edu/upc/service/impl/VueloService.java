@@ -47,16 +47,7 @@ public class VueloService implements IVueloService {
 	@Transactional(readOnly = true)
 	public List<Vuelo> findAll() {
 		// TODO Auto-generated method stub
-		
-		List<Vuelo> vuelosDisponibles = new ArrayList<>();
-		
-		for(Vuelo vuelo : vs.findAll()) {
-			if(!vuelo.isComprado()) {
-				vuelosDisponibles.add(vuelo);
-			}
-		}
-		
-		return vuelosDisponibles;
+		return vs.findAll();
 	}
 
 	@Override

@@ -13,4 +13,4 @@ public interface IEstadiaDAO extends JpaRepository<Estadia, Long> {
 	
 	@Query("select e from Estadia e join fetch e.empresaestadia em where em.id =:idEmpresa")
 	public List<Estadia> findByIdEmpresa(@Param("idEmpresa") Long idEmpresa);
-}
+ }

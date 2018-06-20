@@ -44,17 +44,7 @@ public class EstadiaService implements IEstadiaService {
 	@Override
 	@Transactional(readOnly = true)
 	public List<Estadia> findAll() {
-		// TODO
-		//Regla de negocio - Solo va a listar en el sitio web los servicios que aun no han sido comprados
-		List<Estadia> estadiasDisponibles = new ArrayList<>();
-		
-		for(Estadia estadia : es.findAll()) {
-			if(!estadia.isComprado()) {
-				estadiasDisponibles.add(estadia);
-			}
-		}
-		
-		return estadiasDisponibles;
+		return es.findAll();
 	}
 
 	@Override

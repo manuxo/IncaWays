@@ -11,4 +11,5 @@ public interface IEstadiaService {
 	public List<Estadia> findAll();
 
 	public List<Estadia> findByIdEmpresa(Long idEmpresa);
+	
 }
