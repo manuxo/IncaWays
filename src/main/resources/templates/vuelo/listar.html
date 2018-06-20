@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
@@ -31,7 +31,7 @@
                   <p class="card-text" th:text="'Fecha: ' + ${vuelo.fechasalida}"></p>
                   <p class="card-text" th:text="'Hora: ' + ${vuelo.horasalida}"></p>
                 </div>
-                <div class="card-footer">
+                <div class="card-footer" sec:authorize="!hasAnyRole('ROLE_EmpresaV','ROLE_EmpresaE')">
                   <a th:href="@{/vuelo/ver/} + ${vuelo.id}" class="btn btn-dark">Ver</a>
                 </div>
               </div>

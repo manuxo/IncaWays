@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
@@ -37,13 +37,22 @@
 					    <input type="text" id="total" class="form-control" disabled>
 					  </div>
 					 
-					  <div class="btn-group bg-default">
-						<a type="button" class="btn btn-light" th:href="@{/estadia/listar}">
-							Volver
-						</a>
-						<button type="submit" class="btn btn-dark">
-							Comprar
-						</button>
+					  <div class="card" sec:authorize="!isAuthenticated()">
+						  	<div class="card-header bg-warning" style="color:white!important;">Advertencia</div>
+						  	<div class="card-body">
+						  		<p>Para realizar la compra debe <a th:href="@{/usuario/registrar}">registrarse</a>.</p>
+								<br>
+								<p>Si ya tiene una cuenta ingrese.</p>
+								<div class="btn-group">
+									<a class="btn btn-light" th:href="@{/estadia/listar}">Volver</a>
+									<a class="btn btn-dark" th:href="@{/login}">Iniciar sesión</a>
+								</div>
+						  	</div>
+					  </div>
+					 
+					  <div class="btn-group bg-default" sec:authorize="hasRole('ROLE_Cliente')">
+						<a class="btn btn-light" th:href="@{/estadia/listar}">Volver</a>
+						<button type="submit" class="btn btn-dark">Comprar</button>
 			    	  </div>
 				</form>
 				

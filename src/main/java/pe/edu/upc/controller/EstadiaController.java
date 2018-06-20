@@ -46,7 +46,6 @@ public class EstadiaController {
 	@Autowired
 	private JpaUserDetailsService servicioUsers;
 	
-	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/listar")
 	public String listar(Model model) {
 
@@ -90,7 +89,6 @@ public class EstadiaController {
 		return "estadia/misestadias";
 	}
 	
-	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/estadia/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 

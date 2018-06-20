@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html xmlns:th="http://www.thymeleaf.org">
+<html xmlns:th="http://www.thymeleaf.org" xmlns:sec="http://www.thymeleaf.org/extras/spring-security">
 <meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
@@ -51,22 +51,26 @@
 						  	
 						  </div>
 						  
-						  <div class="btn-group">
-							  
-							<a type="button" class="btn btn-light" th:href="@{/vuelo/listar}">
-								Volver
-							</a>
-							<button type="submit" class="btn btn-dark">
-								Comprar
-							</button>
+						  <div class="card" sec:authorize="!isAuthenticated()">
+						  	<div class="card-header bg-warning" style="color:white!important;">Advertencia</div>
+						  	<div class="card-body">
+						  		<p>Para realizar la compra debe <a th:href="@{/usuario/registrar}">registrarse</a>.</p>
+								<br>
+								<p>Si ya tiene una cuenta ingrese.</p>
+								<div class="btn-group">
+									<a class="btn btn-light" th:href="@{/vuelo/listar}">Volver</a>
+									<a class="btn btn-dark" th:href="@{/login}">Iniciar sesión</a>
+								</div>
+						  	</div>
+						  </div>
+						  <div class="btn-group" sec:authorize="hasRole('ROLE_Cliente')">
+							<a class="btn btn-light" th:href="@{/vuelo/listar}">Volver</a>
+							<button type="submit" class="btn btn-dark">Comprar</button>
 				    	  </div>
 					</form>
 			</div>
 		</div><!-- .row -->
 	</div><!-- .container py-3 -->
-		<!-- Panel -->
-	</div>
-	<!-- Contenido Principal -->
 	<footer th:replace="layout/layout :: footer"></footer>
 	<script th:src="@{/js/compravuelo/CalcularTotal.js}"></script>
 </body>

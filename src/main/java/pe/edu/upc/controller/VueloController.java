@@ -50,7 +50,6 @@ public class VueloController {
 	@Autowired
 	private JpaUserDetailsService servicioUsers;
 	
-	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/listar")
 	public String listar(Model model) {
 
@@ -99,7 +98,6 @@ public class VueloController {
 	}
 	
 	
-	@Secured("ROLE_Cliente")
 	@GetMapping(value = "/vuelo/ver/{id}")
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
