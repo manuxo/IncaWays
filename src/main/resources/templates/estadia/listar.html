@@ -6,47 +6,34 @@
 
 	<header th:replace="layout/layout :: header"></header>
 	
-	<div class="row contenedor">
-	
-		<div class="col-sm-12">
-			<div class="contenedor">
-				<br>
-				<h2>Estadias</h2>
-				<table class="table table-condensed">
-				    <thead>
-				      <tr>
-				        <th>Pais</th>
-				        <th>Ciudad</th>
-				        <th>Tipo estadia</th>
-				        <th>Costo x dia</th>
-				        <th></th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr th:each="estadia:${estadias}">
-				        <td th:text="${estadia.pais}"></td>
-				        <td th:text="${estadia.ciudad}"></td>
-				        <td th:text="${estadia.tipoestadia}"></td>
-				        <td th:text="'$' + ${estadia.costoxdia}"></td>
-				        <td>
-	  						<div class="btn-group">
-							  <a th:href ="@{/estadia/ver/} + ${estadia.id}">
-							  <button type="button" class="btn btn-dark">
-							  	Ver
-							  </button>
-							  </a>
-							</div>
-						</td>
-				      </tr>
-				    </tbody>
-				    
-		    	</table>
-		    	
+	<div class="container">
+		<div class="row">
+			<div class="col-lg-12">
+				<div class="text-center">
+					<h2>Estadías</h2>
+				</div>
 			</div>
 		</div>
-		<!-- Panel Derecho -->
-	</div>
-	<!-- Contenido Principal -->
+		<div class="row">
+
+            <div class="col-lg-4 col-md-6 mb-4" th:each="estadia:${estadias}">
+              <div class="card h-100">
+                <a href="#"><img class="card-img-top" th:src="@{/images/habitacion.png}" alt=""></a>
+                <div class="card-body">
+                  <h4 class="card-title" th:text="${estadia.empresaestadia.nombre}"></h4>
+                  <h5 th:text="'$ ' + ${estadia.costoxdia}"></h5>
+                  <p class="card-text" th:text="'País: ' + ${estadia.pais}"></p>
+                  <p class="card-text" th:text="'Ciudad: ' + ${estadia.ciudad}"></p>
+                  <p class="card-text" th:text="'Tipo de estadía: ' + ${estadia.tipoestadia}"></p>
+                </div>
+                <div class="card-footer">
+                  <a th:href ="@{/estadia/ver/} + ${estadia.id}" class="btn btn-dark">Ver</a>
+                </div>
+              </div>
+            </div>
+        </div><!-- /.row -->
+	</div><!-- .container -->
+	
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

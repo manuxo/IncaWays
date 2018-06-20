@@ -27,7 +27,7 @@ crossorigin="anonymous"></script>
 			</button>
 			<div class="collapse navbar-collapse">
 				<ul class="navbar-nav mr-auto">
-					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Home</a></li>
+					<li class="nav-item active"><a class="nav-link" th:href="@{/}">Inicio</a></li>
 					<li class="nav-item"><a class="nav-link"
 						th:href="@{/vuelo/listar}" sec:authorize="hasRole('ROLE_Cliente')">Vuelos</a></li>
 						<li class="nav-item"><a class="nav-link"
@@ -41,9 +41,9 @@ crossorigin="anonymous"></script>
 							  </button>
 							  <div class="dropdown-menu">
 							    <a class="dropdown-item" th:href="@{/vuelo/crear}" sec:authorize="hasRole('ROLE_EmpresaV')">Publicar Vuelo</a>
-							    <a class="dropdown-item" th:href="@{/vuelo/misvuelos}" sec:authorize="hasRole('ROLE_EmpresaV')">Mis Vuelos</a>
+							    <a class="dropdown-item" th:href="@{/vuelo/misvuelos}" sec:authorize="hasRole('ROLE_EmpresaV')">Mis Servicios</a>
 							    <a class="dropdown-item" th:href="@{/estadia/crear}" sec:authorize="hasRole('ROLE_EmpresaE')">Publicar Estadia</a>
-							    <a class="dropdown-item" th:href="@{/estadia/misestadias}" sec:authorize="hasRole('ROLE_EmpresaE')">Mis Estadias</a>
+							    <a class="dropdown-item" th:href="@{/estadia/misestadias}" sec:authorize="hasRole('ROLE_EmpresaE')">Mis Servicios</a>
 							  </div>
 							</div>
 						</li>
@@ -94,6 +94,9 @@ crossorigin="anonymous"></script>
 
 	<footer th:fragment="footer" class="container">
 		<hr />
+		<a href="https://github.com/manuxo/IncaWays" target=_blank>
+		<img th:src="@{/images/alien.png}" alt="logo" class="rounded-circle"/>
+		</a>
 		<p>
 			Powered by  <a href="https://github.com/manuxo/IncaWays" target=_blank>Incaways</a>.&copy; Company 2018.
 		</p>

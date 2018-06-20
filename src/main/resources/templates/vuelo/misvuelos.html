@@ -5,50 +5,49 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-	
-	<div class="row contenedor">
-	
-		<div class="col-sm-12">
-			<div class="contenedor">
-				<h2>Mis Servicios</h2>
-				<table class="table table-condensed">
-				    <thead>
-				      <tr>
-				        <th>Origen</th>
-				        <th>Destino</th>
-				        <th>Fecha de Salida</th>
-				        <th>Hora de Salida</th>
-				        <th>Estado</th>
-				        <th>Tarifa Base</th>
-				        <th></th>
-				      </tr>
-				    </thead>
-				    <tbody>
-				      <tr th:each="vuelo:${vuelos}">
-				        <td th:text="${vuelo.origen}"></td>
-				        <td th:text="${vuelo.destino}"></td>
-				        <td th:text="${vuelo.fechasalida}"></td>
-				        <td th:text="${vuelo.horasalida}"></td>
-				        <td>
-				        	<span th:if="${vuelo.comprado}" th:text="Vendido" class="text-success"></span>
-				        	<span th:unless="${vuelo.comprado}" th:text="Pendiente" class="text-warning"></span>
-				        </td>
-				        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
-				        <td th:if="${!vuelo.comprado}">
-				        	<div class="btn-group">
-				        		<a class="btn btn-secondary text-light">Editar</a>
-				        		<a class="btn btn-danger text-light">Eliminar</a>
-				        	</div>
-				        </td>
-				      </tr>
-				    </tbody>
-		    	</table>
-		    	
+	<div class="container py-3">
+		<div class="row">
+			<div class="col-sm-12">
+				<div class="contenedor">
+					<br>
+					<h2>Mis Servicios</h2>
+					<table class="table table-condensed">
+					    <thead>
+					      <tr>
+					        <th>Origen</th>
+					        <th>Destino</th>
+					        <th>Fecha de Salida</th>
+					        <th>Hora de Salida</th>
+					        <th>Estado</th>
+					        <th>Tarifa Base</th>
+					        <th></th>
+					      </tr>
+					    </thead>
+					    <tbody>
+					      <tr th:each="vuelo:${vuelos}">
+					        <td th:text="${vuelo.origen}"></td>
+					        <td th:text="${vuelo.destino}"></td>
+					        <td th:text="${vuelo.fechasalida}"></td>
+					        <td th:text="${vuelo.horasalida}"></td>
+					        <td>
+					        	<span th:if="${vuelo.comprado}" th:text="Vendido" class="text-success"></span>
+					        	<span th:unless="${vuelo.comprado}" th:text="Pendiente" class="text-warning"></span>
+					        </td>
+					        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
+					        <td th:if="${!vuelo.comprado}">
+					        	<div class="btn-group">
+					        		<a class="btn btn-secondary text-light">Editar</a>
+					        		<a class="btn btn-danger text-light">Eliminar</a>
+					        	</div>
+					        </td>
+					      </tr>
+					    </tbody>
+			    	</table>
+			    	
+				</div>
 			</div>
-		</div>
-		<!-- Panel Derecho -->
-	</div>
-	<!-- Contenido Principal -->
+		</div><!-- .row -->
+	</div><!-- .container py-3 -->
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>
 </html>

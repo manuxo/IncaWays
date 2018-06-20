@@ -5,55 +5,55 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-	
-	<div class="row container">
-		
-		<div class="col-sm-12">
-			<h2>Registrarse</h2>
-			<ul class="nav nav-tabs">
-			  <li class="nav-item">
-			    <a class="nav-link active" th:href="@{/usuario/registrar}">Cliente</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" th:href="@{/empresavuelo/registrar}">Aerolinea</a>
-			  </li>
-			  <li class="nav-item">
-			    <a class="nav-link" th:href="@{/empresaestadia/registrar}">Empresa de estadia</a>
-			  </li>
-			</ul>
-			<br>
-			<form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
-				<div class="form-group">
-					<label for="username">Nombre de usuario: </label>
-					<input id="username" type="text" class="form-control" th:field="*{user.username}" required>
-					<label for="password">Contraseña: </label>
-					<input id="password" type="password" class="form-control" th:field="*{user.password}"required>
-					<label for="nombre">Nombres: </label>
-					<input id="nombre" type="text" class="form-control" th:field="*{nombre}" required>
-					<label for="apellido">Apellidos: </label>
-					<input id="apellido" type="text" class="form-control" th:field="*{apellido}" required>
-					<label for="nrotarjeta">Numero de tarjeta: </label>
-					<input id="nrotarjeta" type="number" class="form-control" th:field="*{nrotarjeta}" required>
-					<label for="codigocompra">Codigo de compra: </label>
-					<input id="codigocompra" type="number" class="form-control" th:field="*{codigocompra}" required>
-					<label for="cvv">CVV: </label>
-					<input id="cvv" type="number" class="form-control" th:field="*{cvv}" required>
-					<br>
-				</div>
-				
-				<div class="btn-group">
-					  
-					<button type="button" class="btn btn-link">
-						Volver
-					</button>
-					<button type="submit" class="btn btn-primary">
-						Registrar
-					</button>
-		    	  </div>
-			</form>
-		</div>
-		<!-- Panel -->
-	</div>
+	<div class="container py-3">
+		<div class="row">
+			<div class="col-sm-12">
+				<h2>Registrarse</h2>
+				<ul class="nav nav-tabs">
+				  <li class="nav-item">
+				    <a class="nav-link active text-dark" th:href="@{/usuario/registrar}">Cliente</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link text-dark" th:href="@{/empresavuelo/registrar}">Aerolinea</a>
+				  </li>
+				  <li class="nav-item">
+				    <a class="nav-link text-dark" th:href="@{/empresaestadia/registrar}">Empresa de estadia</a>
+				  </li>
+				</ul>
+				<br>
+				<form th:action="@{/usuario/registrar}" th:object="${usuario}" method="post">
+					<div class="form-group">
+						<label for="username">Nombre de usuario: </label>
+						<input id="username" type="text" class="form-control" th:field="*{user.username}" required>
+						<label for="password">Contraseña: </label>
+						<input id="password" type="password" class="form-control" th:field="*{user.password}"required>
+						<label for="nombre">Nombres: </label>
+						<input id="nombre" type="text" class="form-control" th:field="*{nombre}" required>
+						<label for="apellido">Apellidos: </label>
+						<input id="apellido" type="text" class="form-control" th:field="*{apellido}" required>
+						<label for="nrotarjeta">Numero de tarjeta: </label>
+						<input id="nrotarjeta" type="number" class="form-control" th:field="*{nrotarjeta}" required>
+						<label for="codigocompra">Codigo de compra: </label>
+						<input id="codigocompra" type="number" class="form-control" th:field="*{codigocompra}" required>
+						<label for="cvv">CVV: </label>
+						<input id="cvv" type="number" class="form-control" th:field="*{cvv}" required>
+						<br>
+					</div>
+					
+					<div class="btn-group">
+						  
+						<button type="button" class="btn btn-light">
+							Volver
+						</button>
+						<button type="submit" class="btn btn-dark">
+							Registrar
+						</button>
+			    	  </div>
+				</form>
+			</div>
+			<!-- Panel -->
+		</div><!-- .row -->
+	</div><!-- .container py-3 -->
 	<!-- Contenido Principal -->
 	<footer th:replace="layout/layout :: footer"></footer>
 </body>

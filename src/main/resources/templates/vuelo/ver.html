@@ -5,66 +5,65 @@
 <body>
 
 	<header th:replace="layout/layout :: header"></header>
-	
-	<div class="row container">
-		
-		<div class="col-sm-12">
-			<br>
-			<h2 th:text="'Vuelo #' + ${vuelo.id}"></h2>
-			<div class="card">
-			  <div class="card-header bg-dark" style="color:white!important;">Detalles</div>
-			  <div class="card-body bg-default">
-			    <p th:text="'Aerolinea: ' + ${vuelo.empresavuelo.nombre}"></p>
-			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
-			  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
-			  	<p th:text="'Precio base: $' + ${vuelo.tarifabase}"></p>
-			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto * vuelo.tarifabase}"></p>
-			  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino * vuelo.tarifabase}"></p>
-			  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc * vuelo.tarifabase}"></p>
-			  </div>
+	<div class="container py-3">
+		<div class="row">
+			<div class="col-sm-12 col-centered">
+					<br>
+					<h2 th:text="'Vuelo #' + ${vuelo.id}"></h2>
+					<div class="card">
+					  <div class="card-header bg-dark" style="color:white!important;">Detalles</div>
+					  <div class="card-body bg-default">
+					    <p th:text="'Aerolinea: ' + ${vuelo.empresavuelo.nombre}"></p>
+					  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
+					  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
+					  	<p th:text="'Precio base: $' + ${vuelo.tarifabase}"></p>
+					  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto * vuelo.tarifabase}"></p>
+					  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino * vuelo.tarifabase}"></p>
+					  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc * vuelo.tarifabase}"></p>
+					  </div>
+					</div>
+					
+					<br>
+					
+					<form th:action="@{/vuelo/ver/} + ${vuelo.id}" th:object="${compravuelo}" method="post">
+						  
+						  <div class="form-group">
+						  	<label for="nroadulto">Cantidad de adultos:</label>
+						  	<input type="number" class="form-control" id="nroadulto"
+						  	th:field="*{nroadulto}">
+						  	<label for="nronino">Cantidad de niños:</label>
+						  	<input type="number" class="form-control" id="nronino"
+						  	th:field="*{nronino}">
+						  	<label for="nrofc">Cantidad de primera clase:</label>
+						  	<input type="number" class="form-control" id="nrofc"
+						  	th:field="*{nrofc}">
+						  	
+						  	
+						  	<!--Inputs para calcular el total en tiempo de ejecucion-->
+						  	<input type="hidden" th:value="${vuelo.tarifabase}" id="tarifabase">
+						  	<input type="hidden" th:value="${vuelo.tarifanino}" id="tarifanino">
+						  	<input type="hidden" th:value="${vuelo.tarifaadulto}" id="tarifaadulto">
+						  	<input type="hidden" th:value="${vuelo.tarifafc}" id="tarifafc">
+						  	<label for="total">Total: </label>
+						  	<br>
+						  	<input type="text" id="total" class="form-control" disabled>
+						  	
+						  	
+						  </div>
+						  
+						  <div class="btn-group">
+							  
+							<a type="button" class="btn btn-light" th:href="@{/vuelo/listar}">
+								Volver
+							</a>
+							<button type="submit" class="btn btn-dark">
+								Comprar
+							</button>
+				    	  </div>
+					</form>
 			</div>
-			
-			<br>
-			
-			<form th:action="@{/vuelo/ver/} + ${vuelo.id}" th:object="${compravuelo}" method="post">
-				  
-				  <div class="form-group">
-				  	<label for="nroadulto">Cantidad de adultos:</label>
-				  	<input type="number" class="form-control" id="nroadulto"
-				  	th:field="*{nroadulto}">
-				  	<label for="nronino">Cantidad de niños:</label>
-				  	<input type="number" class="form-control" id="nronino"
-				  	th:field="*{nronino}">
-				  	<label for="nrofc">Cantidad de primera clase:</label>
-				  	<input type="number" class="form-control" id="nrofc"
-				  	th:field="*{nrofc}">
-				  	
-				  	
-				  	<!--Inputs para calcular el total en tiempo de ejecucion-->
-				  	<input type="hidden" th:value="${vuelo.tarifabase}" id="tarifabase">
-				  	<input type="hidden" th:value="${vuelo.tarifanino}" id="tarifanino">
-				  	<input type="hidden" th:value="${vuelo.tarifaadulto}" id="tarifaadulto">
-				  	<input type="hidden" th:value="${vuelo.tarifafc}" id="tarifafc">
-				  	<label for="total">Total: </label>
-				  	<br>
-				  	<input type="text" id="total" class="form-control" disabled>
-				  	
-				  	
-				  </div>
-				  
-				  <div class="btn-group">
-					  
-					<a type="button" class="btn btn-light" th:href="@{/vuelo/listar}">
-						Volver
-					</a>
-					<button type="submit" class="btn btn-dark">
-						Comprar
-					</button>
-		    	  </div>
-			</form>
-			
-			
-		</div>
+		</div><!-- .row -->
+	</div><!-- .container py-3 -->
 		<!-- Panel -->
 	</div>
 	<!-- Contenido Principal -->
