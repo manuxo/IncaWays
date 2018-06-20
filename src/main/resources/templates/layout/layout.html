@@ -34,7 +34,7 @@ crossorigin="anonymous"></script>
 						th:href="@{/estadia/listar}" sec:authorize="hasRole('ROLE_Cliente')">Estadias</a></li>
 						<li class="nav-item"><a class="nav-link"
 						th:href="@{/compras/listar}" sec:authorize="hasRole('ROLE_Cliente')">Mis compras</a></li>
-						<li class="nav-item">
+						<li class="nav-item" sec:authorize="hasAnyRole('ROLE_EmpresaV','ROLE_EmpresaE')">
 							<div class="dropdown">
 							  <button type="button" class="btn btn-default dropdown-toggle bg-transparent nav-link" data-toggle="dropdown">
 							    Servicios

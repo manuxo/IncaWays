@@ -17,7 +17,7 @@ function calcularTotal(){
 $(function() {
 	
     var inputDias = $('#nrodias');
-    inputDias.change(function(){
+    inputDias.bind('keyup mouseup',function(){
         calcularTotal();
     });
     

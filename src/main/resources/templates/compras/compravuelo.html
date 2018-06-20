@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
 
@@ -10,14 +11,17 @@
 			<div class="contenedor">
 				<h2 th:text="'Compra de vuelo #' + ${compravuelo.id}"></h2>
 				<div class="card">
-				  <div class="card-header bg-dark" style="color:white!important;">Información</div>
+				  <div class="card-header bg-dark" style="color:white!important;">InformaciÃ³n</div>
 				  <div class="card-body">
-				  	<p th:text="'#Pasajes niños: ' + ${compravuelo.nronino}"></p>
+				  	<p th:text="'#Pasajes niÃ±os: ' + ${compravuelo.nronino}"></p>
 				  	<p th:text="'#Pasajes adultos: ' + ${compravuelo.nroadulto}"></p>
 				  	<p th:text="'#Pasajes en primera clase ' + ${compravuelo.nrofc}"></p>
 				  	<p th:text="'Aerolinea: ' + ${compravuelo.vuelo.empresavuelo.nombre}"></p>
 				  	<p th:text="'Fecha de viaje: ' + ${compravuelo.fechaviaje}"></p>
 				  	<p th:text="'Total: $' + ${compravuelo.montototal}"></p>
+				  	<p th:text="'Origen: ' + ${compravuelo.vuelo.origen}"></p>
+				  	<p th:text="'Destino: ' + ${compravuelo.vuelo.destino}"></p>
+				  	<p th:text="'Aerolinea :  ' + ${compravuelo.vuelo.empresavuelo.nombre}"></p>
 				  </div> 
 				</div>
 				<br>

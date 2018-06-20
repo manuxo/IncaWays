@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
 
@@ -16,8 +17,9 @@
 			    <p th:text="'Aerolinea: ' + ${vuelo.empresavuelo.nombre}"></p>
 			  	<p th:text="'Origen: ' + ${vuelo.origen}"></p>
 			  	<p th:text="'Destino: ' + ${vuelo.destino}"></p>
+			  	<p th:text="'Precio base: $' + ${vuelo.tarifabase}"></p>
 			  	<p th:text="'Precio por adulto: $' + ${vuelo.tarifaadulto * vuelo.tarifabase}"></p>
-			  	<p th:text="'Precio por niño: $' + ${vuelo.tarifanino * vuelo.tarifabase}"></p>
+			  	<p th:text="'Precio por niÃ±o: $' + ${vuelo.tarifanino * vuelo.tarifabase}"></p>
 			  	<p th:text="'Precio por primera clase: $' + ${vuelo.tarifafc * vuelo.tarifabase}"></p>
 			  </div>
 			</div>
@@ -30,7 +32,7 @@
 				  	<label for="nroadulto">Cantidad de adultos:</label>
 				  	<input type="number" class="form-control" id="nroadulto"
 				  	th:field="*{nroadulto}">
-				  	<label for="nronino">Cantidad de niños:</label>
+				  	<label for="nronino">Cantidad de niÃ±os:</label>
 				  	<input type="number" class="form-control" id="nronino"
 				  	th:field="*{nronino}">
 				  	<label for="nrofc">Cantidad de primera clase:</label>

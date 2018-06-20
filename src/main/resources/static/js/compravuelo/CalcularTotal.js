@@ -22,9 +22,6 @@ function calcularTotal(){
 }
 $(function() {
     
-    
-    
-    
     var inputAdultos = $('#nroadulto');
     
     var inputNinos = $('#nronino');
@@ -32,15 +29,15 @@ $(function() {
     var inputFC = $('#nrofc');
     
     
-    inputAdultos.change(function(){
+    inputAdultos.bind('keyup mouseup',function(){
         calcularTotal();
     });
     
-    inputNinos.change(function(){
+    inputNinos.bind('keyup mouseup',function(){
         calcularTotal();
     });
     
-    inputFC.change(function(){
+    inputFC.bind('keyup mouseup',function(){
         calcularTotal();
     });
     

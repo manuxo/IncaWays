@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
 <head th:replace="layout/layout :: head"></head>
 <body>
 
@@ -10,7 +11,7 @@
 			<div class="contenedor">
 				<h2 th:text="'Compra de estadia #' + ${compraestadia.id}"></h2>
 				<div class="card">
-				  <div class="card-header bg-dark" style="color:white!important;">Información</div>
+				  <div class="card-header bg-dark" style="color:white!important;">InformaciÃ³n</div>
 				  <div class="card-body">
 				  	<p th:text="'#Dias: ' + ${compraestadia.nrodias}"></p>
 				  	<p th:text="'Usuario: ' + ${compraestadia.usuario.nombre} + ' ' + ${compraestadia.usuario.apellido}"></p>
@@ -19,6 +20,7 @@
 				  	<p th:text="'Ciudad: ' + ${compraestadia.estadia.ciudad}"></p>
 				  	<p th:text="'Direccion: ' + ${compraestadia.estadia.direccion}"></p>
 				  	<p th:text="'Total: $' + ${compraestadia.costo}"></p>
+				  	<p th:text="'Empresa' + ${compraestadia.estadia.empresaestadia.nombre}"></p>
 				  </div> 
 				</div>
 				<br>
