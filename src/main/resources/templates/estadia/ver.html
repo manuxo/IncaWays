@@ -27,7 +27,7 @@
 				<form th:action="@{/estadia/ver/} + ${estadiaV.id}" th:object="${compraestadia}" method="post">
 					  <div class="form-group bg-default">
 					    <label for="nrodias">Seleccione el numero de dias: </label>
-					    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias">
+					    <input class="form-control" type="number" th:field="*{nrodias}" id="nrodias" step="1" min="0" max="100">
 					    
 					    
 					    <!-- Inputs para calcular el total -->
@@ -52,7 +52,9 @@
 					 
 					  <div class="btn-group bg-default" sec:authorize="hasRole('ROLE_Cliente')">
 						<a class="btn btn-light" th:href="@{/estadia/listar}">Volver</a>
-						<button type="submit" class="btn btn-dark">Comprar</button>
+						<button type="submit" class="btn btn-dark" onclick="return confirm('Está seguro que desea realizar la compra?')">Comprar</button>
+						
+						th:onclick="|loadContent('${data.path}')|"
 			    	  </div>
 				</form>
 				

@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+<meta charset="UTF-8"></meta>
+<head th:replace="layout/layout :: head"></head>
+<body>
+
+	<header th:replace="layout/layout :: header"></header>
+	<div class="container py-3">
+		<div class="row">
+			
+			<div class="col-sm-12">
+				<br>
+				<h2>Editar Estadia</h2>
+				<form th:action="@{/estadia/editar}" th:object="${estadia}" method="post">
+					  <div class="form-group">
+					  
+					  	<label for="pais">Pais: </label>
+					  	<select class="form-control" id="pais" th:field="*{pais}" required>
+						  <option th:each="pais:${paises}" th:value="${pais}" th:text="${pais}">
+						  </option>
+						</select>
+					  	<label for="ciudad">Ciudad: </label>
+					  	<select class="form-control" id="ciudad" th:field="*{ciudad}" required>
+						  <option th:each="ciudad:${ciudades}" th:value="${ciudad}" th:text="${ciudad}">
+						  </option>
+						</select>
+					  	
+					  	<label for="direccion">Direccion: </label>
+						<input id="direccion" type="text" class="form-control" th:field="*{direccion}" required>
+						
+						<label for="tipoestadia">Tipo de estadia: </label>
+						<select class="form-control" id="tipoestadia" th:field="*{tipoestadia}" required>
+						  <option th:each="tipoestadia:${tipoestadias}" th:value="${tipoestadia}" th:text="${tipoestadia}">
+						  </option>
+						</select>
+						<label for="costoxdia">Costo por dia: </label>
+					  	<input id="costoxdia" class="form-control" type="number" min="1" th:field="*{costoxdia}" required>
+					  	
+					  	<input type="hidden" th:name="idEstadia" th:value="${idEstadia}">
+					  	
+					  </div>
+					  
+					  <div class="btn-group">
+						  
+						<a type="button" class="btn btn-light" th:href="@{/estadia/misestadias}">
+							Volver
+						</a>
+						<button type="submit" class="btn btn-dark">
+							Editar
+						</button>
+			    	  </div>
+				</form>
+				
+			</div>
+		</div><!-- .row -->
+	</div><!-- .container py-3 -->
+	<footer th:replace="layout/layout :: footer"></footer>
+</body>
+</html>

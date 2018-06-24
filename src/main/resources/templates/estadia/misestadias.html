@@ -35,8 +35,10 @@
 					        <td th:text="'$' + ${estadia.costoxdia}"></td>
 					        <td th:if="${!estadia.comprado}">
 					        	<div class="btn-group">
-					        		<a class="btn btn-secondary text-light">Editar</a>
-					        		<a class="btn btn-danger text-light">Eliminar</a>
+					        		<a class="btn btn-secondary text-light" th:href="@{/estadia/editar/} + ${estadia.id}">Editar</a>
+					        		<a class="btn btn-danger text-light" th:href="@{/estadia/eliminar/} + ${estadia.id}"
+					        		onclick="return confirm('Está seguro que desea eliminar la estadía?')">
+					        		Eliminar</a>
 					        	</div>
 					        </td>
 					      </tr>

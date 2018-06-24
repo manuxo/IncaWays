@@ -20,6 +20,7 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import pe.edu.upc.entity.Compraestadia;
@@ -34,6 +35,7 @@ import pe.edu.upc.service.IUsuarioService;
 import pe.edu.upc.service.IVueloService;
 import pe.edu.upc.service.impl.JpaUserDetailsService;
 import pe.edu.upc.util.ComboBuilder;
+import pe.edu.upc.viewmodel.VueloViewModel;
 
 @Controller
 public class VueloController {
@@ -124,21 +126,17 @@ public class VueloController {
 	@GetMapping(value = "/vuelo/crear")
 	public String crear(Model model) {
 		
-		List<Empresavuelo> empresavuelos = servicioEmpresaVuelo.findAll();
-		model.addAttribute("empresavuelos", empresavuelos);
-		
 		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
 		model.addAttribute("aviones",ComboBuilder.avionesDisponibles());
 		
-		model.addAttribute("contenedor",new ContenedorFormulario());
+		model.addAttribute("contenedor",new VueloViewModel());
 		model.addAttribute("titulo","Publicar Vuelo");
 		return "vuelo/crear";
 	}
 	
 	@Secured("ROLE_EmpresaV")
 	@PostMapping(value = "/vuelo/crear")
-	// public String guardar(Compravuelo compravuelo) {
-	public String guardar(@Valid ContenedorFormulario contenedor, BindingResult bindingResult) {
+	public String guardar(@Valid VueloViewModel contenedor, BindingResult bindingResult) {
 		contenedor.getVuelo().setFechasalida(contenedor.formatStringToSqlDate(contenedor.getFechasalida()));
 		contenedor.getVuelo().setHorasalida(Time.valueOf(contenedor.getHorasalida()));
 		
@@ -158,52 +156,55 @@ public class VueloController {
 		return "redirect:/vuelo/misvuelos";
 	}
 	
+	@Secured("ROLE_EmpresaV")
+	@GetMapping(value= "/vuelo/editar/{id}")
+	public String editar(Model model, @PathVariable(value="id") Long id) {
+		
+		VueloViewModel contenedor = new VueloViewModel();
+		Vuelo vuelo = servicio.findById(id);
+		contenedor.setVuelo(vuelo);
+		contenedor.setFechasalida(vuelo.getFechasalida().toString());
+		contenedor.setHorasalida(vuelo.getHorasalida().toString());
+		model.addAttribute("contenedor",contenedor);
+		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
+		model.addAttribute("aviones",ComboBuilder.avionesDisponibles());
+		model.addAttribute("idVuelo",contenedor.getVuelo().getId());
+		model.addAttribute("titulo","Editar Vuelo #" + vuelo.getId());
+		
+		
+		return "vuelo/editar";
+	}
+	
+	@Secured("ROLE_EmpresaV")
+	@PostMapping(value= "/vuelo/editar")
+	public String update(Model model, @Valid VueloViewModel contenedor, @RequestParam(value="idVuelo") Long idVuelo) {
+		contenedor.getVuelo().setFechasalida(contenedor.formatStringToSqlDate(contenedor.getFechasalida()));
+		contenedor.getVuelo().setHorasalida(Time.valueOf(contenedor.getHorasalida()));
+		
+		
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresavuelo empresavuelo = servicioEmpresaVuelo.findByUser(user.getId());
+		contenedor.getVuelo().setEmpresavuelo(empresavuelo);
+		
+		contenedor.getVuelo().setId(idVuelo);
+		servicio.saveVuelo(contenedor.getVuelo());
+		
+		return "redirect:/vuelo/misvuelos";
+	}
+	
+	@Secured("ROLE_EmpresaV")
+	@GetMapping(value="/vuelo/eliminar/{id}")
+	public String delete(@PathVariable(value="id")Long id) {
+		servicio.deleteVuelo(id);
+		return "redirect:/vuelo/misvuelos";
+	}
+	
 }
 
-class ContenedorFormulario{
-	private Vuelo vuelo;
-	private String fechasalida;
-	private String horasalida;
-	
-	public ContenedorFormulario() {
-		this.vuelo = new Vuelo();
-	}
-	
-	public Vuelo getVuelo() {
-		return vuelo;
-	}
-	public void setVuelo(Vuelo vuelo) {
-		this.vuelo = vuelo;
-	}
-	public String getFechasalida() {
-		return fechasalida;
-	}
-	public void setFechasalida(String fechasalida) {
-		this.fechasalida = fechasalida;
-	}
-	public String getHorasalida() {
-		return horasalida;
-	}
-	public void setHorasalida(String horasalida) {
-		this.horasalida = horasalida;
-	}
-	
-	public Date formatStringToSqlDate(String strDate) {
-		Date fecha = null;
-		String anios = strDate.substring(0,4);
-		
-		String meses = strDate.substring(5,7);
-		
-		String dias = strDate.substring(8);
-		
-		@SuppressWarnings("deprecation")
-		java.util.Date fechaFormateada = new java.util.Date(Integer.parseInt(anios), Integer.parseInt(meses), Integer.parseInt(dias));
-		
-		
-		@SuppressWarnings("deprecation")
-		java.util.Date base = new java.util.Date(1969,12,30);
-		
-		fecha = new Date(fechaFormateada.getTime() - base.getTime());
-		return fecha;
-	}
-}

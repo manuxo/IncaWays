@@ -1,8 +1,12 @@
 package pe.edu.upc.controller;
 
 
-import java.util.List;
+import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
+import java.util.List;
+import java.util.Map;
+
+import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -17,7 +21,9 @@ import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
+import org.springframework.web.servlet.support.RequestContextUtils;
 
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Empresaestadia;
@@ -65,8 +71,9 @@ public class EstadiaController {
 	
 	@Secured("ROLE_EmpresaE")
 	@GetMapping(value = "estadia/misestadias")
-	public String listarEstadiasPorEmpresa(Model model) {
+	public String listarEstadiasPorEmpresa(Model model, HttpServletRequest request) {
 		model.addAttribute("titulo", "Listado de estadias");
+		
 		
 		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
 		String username;
@@ -93,10 +100,6 @@ public class EstadiaController {
 	public String ver(@PathVariable(value = "id") Long id, Model model, RedirectAttributes flash) {
 
 		Estadia estadiaV = servicio.findById(id);
-		if (estadiaV == null) {
-			flash.addFlashAttribute("error", "La estadia no existe en la base de datos");
-			return "redirect:estadia/listar";
-		}
 		
 		//Llenar combobox con los usuarios
 		List<Usuario> usuarios = servicioUsuario.findAll();
@@ -113,8 +116,6 @@ public class EstadiaController {
 	@Secured("ROLE_EmpresaE")
 	@GetMapping(value= "/estadia/crear")
 	public String crear(Model model) {
-		
-		model.addAttribute("empresaestadias",servicioEmpresaEstadia.findAll());
 		model.addAttribute("estadia", new Estadia());
 		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
 		model.addAttribute("paises",ComboBuilder.paisesDisponibles());
@@ -138,6 +139,45 @@ public class EstadiaController {
 		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
 		estadia.setEmpresaestadia(empresaestadia);
 		servicio.saveEstadia(estadia);
+		return "redirect:/estadia/misestadias";
+	}
+	
+	@Secured("ROLE_EmpresaE")
+	@GetMapping(value="/estadia/editar/{id}")
+	public String editar(Model model, @PathVariable(value="id") Long id) {
+		model.addAttribute("estadia", servicio.findById(id));
+		model.addAttribute("ciudades",ComboBuilder.ciudadesDisponibles());
+		model.addAttribute("paises",ComboBuilder.paisesDisponibles());
+		model.addAttribute("tipoestadias",ComboBuilder.tiposEstadia());
+		model.addAttribute("titulo", "Publicar estadia");
+		model.addAttribute("idEstadia",id);
+		return "estadia/editar";
+	}
+	
+	@Secured("ROLE_EmpresaE")
+	@PostMapping(value="/estadia/editar")
+	public String update(Model model, @Valid Estadia estadia, @RequestParam(value="idEstadia") Long idEstadia, RedirectAttributes flashAttributes) {
+		Object principal = SecurityContextHolder.getContext().getAuthentication().getPrincipal();
+		String username;
+		if(principal instanceof UserDetails) {
+			username = ((UserDetails)principal).getUsername();
+		}else {
+			username = principal.toString();
+		}
+		Users user = servicioUsers.findByUsername(username);
+		Empresaestadia empresaestadia = servicioEmpresaEstadia.findByUser(user.getId());
+		estadia.setEmpresaestadia(empresaestadia);
+		estadia.setId(idEstadia);
+		servicio.saveEstadia(estadia);
+		
+		return "redirect:/estadia/misestadias";
+	}
+	
+	@Secured("ROLE_EmpresaE")
+	@GetMapping(value="/estadia/eliminar/{id}")
+	public String delete(@PathVariable(value="id") Long id) {
+		servicio.deleteEstadia(id);
+		
 		return "redirect:/estadia/misestadias";
 	}
 }

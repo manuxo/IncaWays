@@ -30,13 +30,13 @@
 						  <div class="form-group">
 						  	<label for="nroadulto">Cantidad de adultos:</label>
 						  	<input type="number" class="form-control" id="nroadulto"
-						  	th:field="*{nroadulto}">
+						  	th:field="*{nroadulto}" step="1" min="0" max="100">
 						  	<label for="nronino">Cantidad de niños:</label>
 						  	<input type="number" class="form-control" id="nronino"
-						  	th:field="*{nronino}">
+						  	th:field="*{nronino}" step="1" min="0" max="100">
 						  	<label for="nrofc">Cantidad de primera clase:</label>
 						  	<input type="number" class="form-control" id="nrofc"
-						  	th:field="*{nrofc}">
+						  	th:field="*{nrofc}" step="1" min="0" max="100">
 						  	
 						  	
 						  	<!--Inputs para calcular el total en tiempo de ejecucion-->
@@ -65,7 +65,7 @@
 						  </div>
 						  <div class="btn-group" sec:authorize="hasRole('ROLE_Cliente')">
 							<a class="btn btn-light" th:href="@{/vuelo/listar}">Volver</a>
-							<button type="submit" class="btn btn-dark">Comprar</button>
+							<button type="submit" class="btn btn-dark" onclick="return confirm('Está seguro que desea realizar la compra?')">Comprar</button>
 				    	  </div>
 					</form>
 			</div>

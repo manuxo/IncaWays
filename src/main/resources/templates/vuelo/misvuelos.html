@@ -11,6 +11,7 @@
 				<div class="contenedor">
 					<br>
 					<h2>Mis Servicios</h2>
+					<br>
 					<table class="table table-condensed">
 					    <thead>
 					      <tr>
@@ -36,8 +37,9 @@
 					        <td th:text="'Desde $' + ${vuelo.tarifabase}"></td>
 					        <td th:if="${!vuelo.comprado}">
 					        	<div class="btn-group">
-					        		<a class="btn btn-secondary text-light">Editar</a>
-					        		<a class="btn btn-danger text-light">Eliminar</a>
+					        		<a class="btn btn-secondary text-light" th:href="@{/vuelo/editar/} + ${vuelo.id}">Editar</a>
+					        		<a class="btn btn-danger text-light" th:href="@{/vuelo/eliminar/} + ${vuelo.id}"
+					        		onclick="return confirm('Está seguro que desea eliminar el vuelo?')">Eliminar</a>
 					        	</div>
 					        </td>
 					      </tr>
