@@ -1,10 +1,8 @@
 package pe.edu.upc.controller;
 
 
-import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.request;
 
 import java.util.List;
-import java.util.Map;
 
 import javax.servlet.http.HttpServletRequest;
 import javax.validation.Valid;
@@ -19,18 +17,14 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
-import org.springframework.web.servlet.support.RequestContextUtils;
 
 import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Empresaestadia;
 import pe.edu.upc.entity.Estadia;
 import pe.edu.upc.entity.Users;
 import pe.edu.upc.entity.Usuario;
-import pe.edu.upc.entity.Vuelo;
 import pe.edu.upc.service.IEmpresaEstadiaService;
 import pe.edu.upc.service.IEstadiaService;
 import pe.edu.upc.service.IUsuarioService;

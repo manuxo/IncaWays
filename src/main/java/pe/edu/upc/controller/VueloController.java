@@ -1,9 +1,7 @@
 package pe.edu.upc.controller;
 
 
-import java.sql.Date;
 import java.sql.Time;
-import java.util.ArrayList;
 import java.util.List;
 
 import javax.validation.Valid;
@@ -18,15 +16,11 @@ import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
-import pe.edu.upc.entity.Compraestadia;
 import pe.edu.upc.entity.Compravuelo;
 import pe.edu.upc.entity.Empresavuelo;
-import pe.edu.upc.entity.Estadia;
 import pe.edu.upc.entity.Users;
 import pe.edu.upc.entity.Usuario;
 import pe.edu.upc.entity.Vuelo;
